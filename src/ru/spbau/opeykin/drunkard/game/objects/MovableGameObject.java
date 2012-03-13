@@ -18,8 +18,15 @@ abstract class MovableGameObject extends GameObject {
 	protected void step(int shiftX, int shiftY) {
 		step(position.getPosition(shiftX, shiftY));
 	}
-	
-	protected void step(Position destination) {
+
+
+    /**
+     * try to step to another position
+     *
+     * @param destination position to move on
+     * @return true if moved
+     */
+	protected boolean step(Position destination) {
 		Interaction move = new Interaction(position);
         Position newPosition = move.move(destination);
         
@@ -29,7 +36,10 @@ abstract class MovableGameObject extends GameObject {
 				leavePosition(creator);
 			}
             position = newPosition;
+            return true;
 		}
+
+        return false;
 	}
 	
 	protected Interaction interact() {

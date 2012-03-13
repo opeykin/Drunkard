@@ -60,10 +60,8 @@ public class Interaction {
 				//source.releaseHost();
 				return destination;
 			default:
-				System.err.println(
-						"Unhandeled InteractionResult in Interaction.make(...)");
-				System.exit(1);
-				return null;
+                throw new UnsupportedOperationException(
+                        "Unhandled InteractionResult in Interaction.make(...)");
 		}
 	}
 }

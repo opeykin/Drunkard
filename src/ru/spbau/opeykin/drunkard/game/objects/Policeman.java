@@ -1,10 +1,9 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-
 import ru.spbau.opeykin.drunkard.game.GameObjectCreator;
 import ru.spbau.opeykin.drunkard.game.Position;
+
+import java.util.LinkedList;
 
 public class Policeman extends MovableGameObject {
 	
@@ -16,11 +15,13 @@ public class Policeman extends MovableGameObject {
 	
 	private LinkedList<Position> route;
 
+
 	public Policeman(Position position, Position target, Position returnPosition) {
 		super(position);
 		this.target = target;
 		this.returnPosition = returnPosition;
 	}
+
 
 	@Override
 	public InteractionResult affect(GameObject gameObject) {
@@ -35,10 +36,11 @@ public class Policeman extends MovableGameObject {
 		}
 	}
 
+
 	@Override
 	public void doTurn() {
 		if (complete && getPosition() == returnPosition) {
-			getPosition().releaseHost();
+			getPosition().releaseHost(); // mission accomplished
 			return;
 		}
 		
@@ -47,27 +49,20 @@ public class Policeman extends MovableGameObject {
 		}
 		
 		if (route == null) {
-			//System.out.println("Policeman see no path");
-			//no route exist for the moment
+			// no route exists for the moment
 			return;
 		}
-		
-		try {
-			step(route.getFirst());
-		} catch (NoSuchElementException e) {
-			System.err.println("Policeman tried to get a position from empty route list");
-			System.exit(1);
-		}	
+
+        boolean isMoved = step(route.getFirst());
+        if (!isMoved) {
+            updateRoute();
+        }
 	}
+
 
 	@Override
 	protected void leavePosition(GameObjectCreator creator) {
-		try {
-			route.removeFirst();
-		} catch (NoSuchElementException e) {
-			System.err.println("Policeman tried to pop a position from empry route list");
-			System.exit(1);
-		}	
+        route.pollFirst();
 	}
 
 
@@ -81,11 +76,13 @@ public class Policeman extends MovableGameObject {
 		return InteractionResult.KEEP_BOTH;
 	}
 
+
 	@Override
 	InteractionResult getAffected(Lamp lamp) {
 		updateRoute();
 		return InteractionResult.KEEP_BOTH;
 	}
+
 
 	@Override
 	InteractionResult getAffected(Pole pole) {
@@ -93,11 +90,13 @@ public class Policeman extends MovableGameObject {
 		return InteractionResult.KEEP_BOTH;
 	}
 
+
 	@Override
 	InteractionResult getAffected(Policeman policeman) {
 		updateRoute();
 		return InteractionResult.KEEP_BOTH;
 	}
+
 
 	@Override
 	InteractionResult getAffected(Bottle bottle) {
@@ -105,9 +104,9 @@ public class Policeman extends MovableGameObject {
 		return InteractionResult.KEEP_BOTH;
 	}
 
+
 	@Override
 	public char getSymbol() {
 		return '!';
 	}
-
 }

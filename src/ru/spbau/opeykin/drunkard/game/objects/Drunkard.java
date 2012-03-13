@@ -93,10 +93,8 @@ public class Drunkard extends MovableGameObject {
 				state = State.SLEEP_STANDING;
 				return InteractionResult.KEEP_BOTH;
 			default:
-				System.err.println(
-					"Unhandeled state in Drunkard.getAffected(Drunkard)");
-				System.exit(1);
-				return InteractionResult.KEEP_BOTH;
+                throw new UnsupportedOperationException(
+                        "Unhandled state in Drunkard.getAffected(Drunkard)");
 		}
 	}
 

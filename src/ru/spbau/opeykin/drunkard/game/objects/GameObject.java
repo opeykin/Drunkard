@@ -54,10 +54,8 @@ public abstract class GameObject {
 	}
 	
 	InteractionResult getAffected(BarrelHouse barrelHouse) {
-		System.err.println(
-				this.toString() + " requested to get affected by " + 
-				barrelHouse.toString());
-		System.exit(1);
-		return InteractionResult.KEEP_BOTH;
-	}
+        throw new UnsupportedOperationException(
+                this.toString() + " requested to get affected by " +
+                barrelHouse.toString());
+    }
 }
