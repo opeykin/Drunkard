@@ -21,12 +21,14 @@ abstract class MovableGameObject extends GameObject {
 	
 	protected void step(Position destination) {
 		Interaction move = new Interaction(position);
-		position = move.move(destination);
-		if (move.isMoved()) {
-			GameObjectCreator creator = move.getLeavedPositionCreator();
+        Position newPosition = move.move(destination);
+        
+		if (!position.equals(newPosition)) { // moved
+			GameObjectCreator creator = new GameObjectCreator(position);
 			if (creator.canCreate()) {
 				leavePosition(creator);
 			}
+            position = newPosition;
 		}
 	}
 	

@@ -15,8 +15,6 @@ public class Interaction {
 
 	private Position source;		
 	
-	boolean isMoved = false;
-	
 	/**
 	 * Reference to game field
 	 */
@@ -24,20 +22,6 @@ public class Interaction {
 	public Interaction(Position source) {
 		this.source = source;
 	}	
-	
-	
-	public boolean isMoved() {
-		return isMoved;
-	}
-	
-	
-	public GameObjectCreator getLeavedPositionCreator() {
-		if (isMoved()) {
-			return new GameObjectCreator(source);
-		} else {
-			return null;
-		}
-	}
 	
 	
 	public void setListener(int shiftX, int shiftY, Listener listener) {
@@ -75,7 +59,6 @@ public class Interaction {
 				// do nothing
 				return source;
 			case REPLACE_HOST:
-				isMoved = true;
 				destination.denudeContent(source);
 				//source.destroyObject();
 				return destination;
