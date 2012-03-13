@@ -6,8 +6,9 @@ public interface GameConstants {
 	 * use: success if 0 in between [0 DrunkardBottleDropProbability)
 	 */
 	public static final int drunkardBottleDropProb = 30;
-	
-	public static final int lampLightRadius = 4;
+
+    // TODO make 4
+	public static final int lampLightRadius = 6;
 	
 	public static final int fieldHeight = 15;	
 	public static final int fieldWidth = 15;

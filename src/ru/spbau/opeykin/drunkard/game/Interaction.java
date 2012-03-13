@@ -15,10 +15,7 @@ public class Interaction {
 
 	private Position source;		
 	
-	/**
-	 * Reference to game field
-	 */
-	
+
 	public Interaction(Position source) {
 		this.source = source;
 	}	
@@ -31,20 +28,20 @@ public class Interaction {
 			position.setListener(listener);
 		}
 	}
-	
-	public Position move(int shiftX, int shiftY) {
-		return move(source.getPosition(shiftX, shiftY));
-	}
-	
+
 	
 	public Position move(Position destination) {
 		
 		if (destination == null) { // wrong move(out of field)
 			// TODO: may be needed to do some thing after wrong move
 			return source;
-		} 
+		}
+        if (destination.isFree()) {
+            destination.denudeContent(source);
+            return destination;
+        }
 		
-		switch (destination.step(source)) {
+		switch (destination.getHost().affect(source.getHost())) {
 			case DESTROY_VISITOR:
 				source.destroyObject();
 				return null;

@@ -17,7 +17,7 @@ public interface Field {
 
     List<GameObject> getObjects();
 
-    PoliceDepartment getPoliceDeparment();
+    PoliceDepartment getPoliceDepartment();
 
     LinkedList<Position> getRoute(Position source, Position destination);
 }

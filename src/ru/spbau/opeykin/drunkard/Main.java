@@ -9,9 +9,6 @@ import ru.spbau.opeykin.drunkard.game.GameConstants;
 
 public class Main {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		Field field = new RectangularField(GameConstants.fieldHeight, GameConstants.fieldWidth);
 		//field.draw();

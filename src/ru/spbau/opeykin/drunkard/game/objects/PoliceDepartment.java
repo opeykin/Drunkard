@@ -34,11 +34,11 @@ public class PoliceDepartment
 
 	@Override
 	public void doTurn() {
-		while (objectsToAffect.isEmpty() == false) {
+		while (!objectsToAffect.isEmpty()) {
 			objectsToAffect.poll().affect(this);
 		}
 		
-		if (targetQueue.isEmpty() == false) {
+		if (!targetQueue.isEmpty()) {
 			if (creator.canCreate()) {
 				creator.createPoliceman(targetQueue.pollFirst());
 			}

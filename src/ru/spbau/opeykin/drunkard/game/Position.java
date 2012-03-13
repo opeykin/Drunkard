@@ -15,8 +15,8 @@ import ru.spbau.opeykin.drunkard.game.objects.Listener;
 public class Position {
 		
 	private GameObject host;
-	
-	private Listener listener;
+
+    private Listener listener;
 	
 	private Field field;
 	
@@ -30,7 +30,12 @@ public class Position {
 		this.x = x;
 		this.y = y;
 	}
-	
+
+
+    GameObject getHost() {
+        return host;
+    }
+
 	
 	public Position getPosition(int shiftX, int shiftY) {
 		return field.getPosition(this, shiftX, shiftY);
@@ -66,14 +71,9 @@ public class Position {
 	GameObject getObject() {
 		return host;
 	}
-	
 
-	void releaseObject() {
-		host = null;
-	}
-	
-	
-	void setListener(Listener listener) {
+
+    void setListener(Listener listener) {
 		if (this.listener != null) {
 			System.err.println("tryint to replace existing listener: " +
 							   this.listener.toString() + 
@@ -135,22 +135,7 @@ public class Position {
 		}
 	}
 
-	
-	/**
-	 * try to make step to this position
-	 * 
-	 * @param source position from which step is made
-	 * @return {@link InteractionResult}
-	 */
-	GameObject.InteractionResult step(Position source) {
-		if (host == null) {
-			return GameObject.InteractionResult.REPLACE_HOST;
-		} else {
-			return host.affect(source.host);			
-		}		
-	}
-	
-	
+
 	void denudeContent(Position position) {
 		destroyObject();
 		setObject(position.host);
@@ -160,8 +145,8 @@ public class Position {
 
 	@Override
 	public String toString() {
-		return "Position [x=" + new Integer(x).toString()
-				+ ", y=" + new Integer(y).toString() + "]";
+		return "Position [x=" + Integer.toString(x)
+				+ ", y=" + Integer.toString(y) + "]";
 	}
 
 

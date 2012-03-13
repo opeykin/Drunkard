@@ -50,10 +50,10 @@ public class RectangularField implements Field {
 		int pX = GameConstants.policemanCreatingLocationX;
 		policeDepartment = 
 				new GameObjectCreator(field[pY][pX]).createPoliceDepartment();
-		
-		new GameObjectCreator(field[6][7]).createPole();
-		
-		new GameObjectCreator(field[10][7]).createLamp(GameConstants.lampLightRadius);
+
+        // TODO swap lamp and pole according to rules
+		new GameObjectCreator(field[10][7]).createPole();
+		new GameObjectCreator(field[6][7]).createLamp(GameConstants.lampLightRadius);
 		/*
 		new GameObjectCreator(field[9][7]).createBottle();
 		new GameObjectCreator(field[10][6]).createBottle();
@@ -91,7 +91,7 @@ public class RectangularField implements Field {
 				   		   PoliceDepartment.getChar() + "\n");
 	}
 	
-	public PoliceDepartment getPoliceDeparment() {
+	public PoliceDepartment getPoliceDepartment() {
 		return policeDepartment;
 	}
 
@@ -104,7 +104,7 @@ public class RectangularField implements Field {
 		
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
-				if (field[i][j].isFree() == false) {
+				if (!field[i][j].isFree()) {
 					objectList.add(field[i][j].getObject());
 				}
 			}
@@ -113,7 +113,7 @@ public class RectangularField implements Field {
 	}
 	
 	private LinkedList<Position> BSFResults(Position source, Position destitation, HashMap<Position, Position> res) {
-		if (res.containsKey(destitation) == false) {
+		if (!res.containsKey(destitation)) {
 			return null;
 		}
 		
@@ -134,7 +134,7 @@ public class RectangularField implements Field {
 		queue.add(source);
 		res.put(source, source);
 		
-		while (queue.isEmpty() == false) {
+		while (!queue.isEmpty()) {
 			Position cur = queue.pollFirst();
 			if (cur == destination) {
 				return BSFResults(source, destination, res);
@@ -146,10 +146,10 @@ public class RectangularField implements Field {
 					}
 					Position next = cur.getPosition(shiftX, shiftY);
 					if (next == null || 
-							(next.isFree() == false && next != destination)) {
+							(!next.isFree() && next != destination)) {
 						continue;
 					}
-					if (res.containsKey(next) == false) {
+					if (!res.containsKey(next)) {
 						res.put(next, cur);
 						queue.add(next);
 					}

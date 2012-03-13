@@ -30,7 +30,7 @@ public class GameObjectCreator {
 	
 	public void createLamp(int lightRadius) {
 		GameObject gameObject = new Lamp(position, 
-										 position.getField().getPoliceDeparment(), 
+										 position.getField().getPoliceDepartment(),
 										 lightRadius);
 		position.setObject(gameObject);
 	}
