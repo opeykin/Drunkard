@@ -43,21 +43,21 @@ public class Interaction {
 		
 		switch (destination.getHost().affect(source.getHost())) {
 			case DESTROY_VISITOR:
-				source.destroyObject();
+				source.releaseHost();
 				return null;
 			case DESTROY_HOST:
-				destination.destroyObject();
+				destination.releaseHost();
 				return source;
 			case DESTROY_BOTH:
-				source.destroyObject();
-				destination.destroyObject();
+				source.releaseHost();
+				destination.releaseHost();
 				return null;
 			case KEEP_BOTH:
 				// do nothing
 				return source;
 			case REPLACE_HOST:
 				destination.denudeContent(source);
-				//source.destroyObject();
+				//source.releaseHost();
 				return destination;
 			default:
 				System.err.println(

@@ -20,29 +20,29 @@ public class GameObjectCreator {
 	
 	public void createDrunkard() {
 		GameObject gameObject = new Drunkard(position);
-		position.setObject(gameObject);
+		position.setHost(gameObject);
 	}
 	
 	public void createBottle() {
 		GameObject gameObject = new Bottle(position);
-		position.setObject(gameObject);
+		position.setHost(gameObject);
 	}
 	
 	public void createLamp(int lightRadius) {
 		GameObject gameObject = new Lamp(position, 
 										 position.getField().getPoliceDepartment(),
 										 lightRadius);
-		position.setObject(gameObject);
+		position.setHost(gameObject);
 	}
 	
 	public void createPole() {
 		GameObject gameObject = new Pole(position);
-		position.setObject(gameObject);
+		position.setHost(gameObject);
 	}
 	
 	public void createPoliceman(Position target) {
 		GameObject gameObject = new Policeman(position, target, position);
-		position.setObject(gameObject);
+		position.setHost(gameObject);
 	}
 	
 	public BarrelHouse createBarrelHouse(int druncardCreatingPeriod) {

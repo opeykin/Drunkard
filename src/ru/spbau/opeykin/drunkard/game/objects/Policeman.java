@@ -38,7 +38,7 @@ public class Policeman extends MovableGameObject {
 	@Override
 	public void doTurn() {
 		if (complete && getPosition() == returnPosition) {
-			getPosition().destroyObject();
+			getPosition().releaseHost();
 			return;
 		}
 		

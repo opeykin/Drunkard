@@ -105,7 +105,7 @@ public class RectangularField implements Field {
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
 				if (!field[i][j].isFree()) {
-					objectList.add(field[i][j].getObject());
+					objectList.add(field[i][j].getHost());
 				}
 			}
 		}

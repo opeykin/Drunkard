@@ -32,32 +32,37 @@ public class Position {
     }
 
 
-    GameObject getHost() {
-        return host;
-    }
-
-
     public Position getPosition(int shiftX, int shiftY) {
         return field.getPosition(this, shiftX, shiftY);
     }
 
 
-    char getSymbol() {
-        if (host == null) {
-            return 'o';
-        } else {
-            return host.getSymbol();
+    void denudeContent(Position position) {
+        releaseHost();
+        setHost(position.host);
+        position.host = null;
+    }
+
+
+    GameObject getHost() {
+        return host;
+    }
+
+
+    void setHost(GameObject visitor) {
+        host = visitor;
+
+        for (Listener listener : listeners) {
+            listener.register(host);
         }
     }
 
 
-    int getX() {
-        return x;
-    }
-
-
-    int getY() {
-        return y;
+    public void releaseHost() {
+        if (host != null) {
+            host.destroy();
+            host = null;
+        }
     }
 
 
@@ -68,11 +73,6 @@ public class Position {
 
     boolean isFree() {
         return host == null;
-    }
-
-
-    GameObject getObject() {
-        return host;
     }
 
 
@@ -94,40 +94,29 @@ public class Position {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = x;
-        result = 31 * result + y;
-        return result;
-    }
-
-    void setObject(GameObject visitor) {
-        host = visitor;
-
-        for (Listener listener : listeners) {
-            listener.register(host);
-        }
-    }
-
-
-    public void destroyObject() {
-        if (host != null) {
-            host.destroy();
-            host = null;
-        }
-    }
-
-
-    void denudeContent(Position position) {
-        destroyObject();
-        setObject(position.host);
-        position.host = null;
-    }
-
 
     @Override
     public String toString() {
         return "Position [x=" + Integer.toString(x)
                 + ", y=" + Integer.toString(y) + "]";
+    }
+
+
+    char getSymbol() {
+        if (host == null) {
+            return 'o';
+        } else {
+            return host.getSymbol();
+        }
+    }
+
+
+    int getX() {
+        return x;
+    }
+
+
+    int getY() {
+        return y;
     }
 }
