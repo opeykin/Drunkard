@@ -1,95 +1,84 @@
 package ru.spbau.opeykin.drunkard.game;
 
 import ru.spbau.opeykin.drunkard.game.objects.GameObject;
-import ru.spbau.opeykin.drunkard.game.objects.GameObject.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.objects.Listener;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * Represents cell of the game field. Store objects staying on it.
- * 
- * @author Opeykin Alexander
  *
+ * @author Opeykin Alexander
  */
 public class Position {
-		
-	private GameObject host;
 
-    private Listener listener;
-	
-	private Field field;
-	
-	private int x;
-	
-	private int y;
-	
+    private GameObject host;
 
-	Position(Field field, int x, int y) {
-		this.field = field;
-		this.x = x;
-		this.y = y;
-	}
+    private List<Listener> listeners = new ArrayList<Listener>();
+
+    private Field field;
+
+    private int x;
+
+    private int y;
+
+
+    Position(Field field, int x, int y) {
+        this.field = field;
+        this.x = x;
+        this.y = y;
+    }
 
 
     GameObject getHost() {
         return host;
     }
 
-	
-	public Position getPosition(int shiftX, int shiftY) {
-		return field.getPosition(this, shiftX, shiftY);
-	}
-	
-	
-	char getSymbol() {
-		if (host == null) {
-			return 'o';
-		} else {
-			return host.getSymbol();
-		}
-	}
-	
-	int getX() {
-		return x;
-	}
-	
 
-	int getY() {
-		return y;
-	}
-	
-	public Field getField() {
-		return field;
-	}
-	
+    public Position getPosition(int shiftX, int shiftY) {
+        return field.getPosition(this, shiftX, shiftY);
+    }
 
-	boolean isFree() {
-		return host == null;
-	}
-	
-	GameObject getObject() {
-		return host;
-	}
+
+    char getSymbol() {
+        if (host == null) {
+            return 'o';
+        } else {
+            return host.getSymbol();
+        }
+    }
+
+
+    int getX() {
+        return x;
+    }
+
+
+    int getY() {
+        return y;
+    }
+
+
+    public Field getField() {
+        return field;
+    }
+
+
+    boolean isFree() {
+        return host == null;
+    }
+
+
+    GameObject getObject() {
+        return host;
+    }
 
 
     void setListener(Listener listener) {
-		if (this.listener != null) {
-			System.err.println("tryint to replace existing listener: " +
-							   this.listener.toString() + 
-							   " with " + listener.toString());
-			System.exit(1);
-		}
-		
-		
-		//System.out.println("set listener to " + this.toString());
-		if (listener == null) {
-			System.out.println("NULL");
-			System.exit(1);
-		}
-		
-		this.listener = listener;
-	}
+        listeners.add(listener);
+    }
 
 
     @Override
@@ -113,41 +102,32 @@ public class Position {
     }
 
     void setObject(GameObject visitor) {
-		if (host != null) {
-			System.err.println(
-					"Attempt to place " + visitor.toString() + 
-					" at busy " + this.toString());
-			System.exit(1);
-		}
-		host = visitor;
-		
-		
-		if (listener != null) {
-			listener.register(host);
-		}
-	}
-	
+        host = visitor;
 
-	public void destroyObject() {
-		if (host != null) {
-			host.destroy();
-			host = null;	
-		}
-	}
+        for (Listener listener : listeners) {
+            listener.register(host);
+        }
+    }
 
 
-	void denudeContent(Position position) {
-		destroyObject();
-		setObject(position.host);
-		position.host = null;
-	}
+    public void destroyObject() {
+        if (host != null) {
+            host.destroy();
+            host = null;
+        }
+    }
 
 
-	@Override
-	public String toString() {
-		return "Position [x=" + Integer.toString(x)
-				+ ", y=" + Integer.toString(y) + "]";
-	}
+    void denudeContent(Position position) {
+        destroyObject();
+        setObject(position.host);
+        position.host = null;
+    }
 
 
+    @Override
+    public String toString() {
+        return "Position [x=" + Integer.toString(x)
+                + ", y=" + Integer.toString(y) + "]";
+    }
 }
