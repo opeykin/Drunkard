@@ -1,20 +1,23 @@
 package ru.spbau.opeykin.drunkard.game;
 
-import java.util.LinkedList;
-import java.util.List;
 import ru.spbau.opeykin.drunkard.game.objects.GameObject;
 import ru.spbau.opeykin.drunkard.game.objects.PoliceDepartment;
 
+import java.util.LinkedList;
+import java.util.List;
 
-public abstract class Field {	
+/**
+ * User: Alexander Opeykin
+ * Date: 3/14/12
+ */
+public interface Field {
+    Position getPosition(Position source, int shiftX, int shiftY);
 
-	abstract Position getPosition(Position source, int shiftX, int shiftY);
-	
-	public abstract void draw();
-	
-	public abstract List<GameObject> getObjects(); 
-	
-	public abstract PoliceDepartment getPoliceDeparment();
-	
-	public abstract LinkedList<Position> getRoute(Position source, Position destination);
+    void draw();
+
+    List<GameObject> getObjects();
+
+    PoliceDepartment getPoliceDeparment();
+
+    LinkedList<Position> getRoute(Position source, Position destination);
 }

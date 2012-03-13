@@ -12,7 +12,7 @@ import ru.spbau.opeykin.drunkard.game.objects.GameObject;
 import ru.spbau.opeykin.drunkard.game.objects.PoliceDepartment;
 
 
-public class RectangularField extends Field {
+public class RectangularField implements Field {
 
 	private int height;
 	
@@ -64,7 +64,7 @@ public class RectangularField extends Field {
 	
 	
 	@Override
-	Position getPosition(Position source, int shiftX, int shiftY) {
+	public Position getPosition(Position source, int shiftX, int shiftY) {
 		int x = source.getX() + shiftX;
 		int y = source.getY() + shiftY;
 		
@@ -73,16 +73,6 @@ public class RectangularField extends Field {
 		} else {
 			return null;
 		}
-	}
-	
-
-	public int getHeight() {
-		return height;
-	}
-	
-
-	public int getWidth() {
-		return width;
 	}
 
 
