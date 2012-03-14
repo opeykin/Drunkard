@@ -7,22 +7,22 @@ public class BarrelHouse extends CreatingGameObject {
 
 	private int counter = 0;
 	
-	private int druncardCreatingPeriod;
+	private int drunkardCreatingPeriod;
 	
-	public BarrelHouse(GameObjectCreator creator, int druncardCreatingPeriod) {
+	public BarrelHouse(GameObjectCreator creator, int drunkardCreatingPeriod) {
 		super(creator);
-		this.druncardCreatingPeriod = druncardCreatingPeriod;
-		counter = druncardCreatingPeriod; // to create one at first turn
+		this.drunkardCreatingPeriod = drunkardCreatingPeriod;
+		counter = drunkardCreatingPeriod; // to create one at first turn
 	}
 
 	@Override
-	public InteractionResult affect(GameObject gameObject) {
+	public InteractionResult affect(AffectableGameObject gameObject) {
 		return gameObject.getAffected(this);		
 	}
 
 	@Override
 	public void doTurn() {
-		if (counter < druncardCreatingPeriod) {
+		if (counter < drunkardCreatingPeriod) {
 			++counter;
 		} else {
 			if (creator.canCreate()) {
