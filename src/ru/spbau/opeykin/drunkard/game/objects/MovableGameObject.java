@@ -6,7 +6,7 @@ import ru.spbau.opeykin.drunkard.game.GameObjectCreator;
 import ru.spbau.opeykin.drunkard.game.Interaction;
 import ru.spbau.opeykin.drunkard.game.Position;
 
-abstract class MovableGameObject extends GameObject {
+abstract class MovableGameObject extends AffectableGameObject {
 	
 	private Position position;
 	

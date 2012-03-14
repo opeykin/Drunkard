@@ -1,5 +1,6 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
+import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.Position;
 
 
@@ -10,7 +11,7 @@ public class Pole extends MovableGameObject {
 	}
 
 	@Override
-	public InteractionResult affect(GameObject gameObject) {
+	public InteractionResult affect(AffectableGameObject gameObject) {
 		return gameObject.getAffected(this);		
 	}
 

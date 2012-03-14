@@ -1,19 +1,14 @@
 package ru.spbau.opeykin.drunkard.game;
 
-import ru.spbau.opeykin.drunkard.game.objects.GameObject;
 import ru.spbau.opeykin.drunkard.game.objects.Listener;
 
 
-/**
- * Layer between {@link GameObject} and filed. Although objects should not 
- * know their {@link Position} they should use it to make next step.
- * 
- * @author Alexander Opeykin
- *
- */
 public class Interaction {
 
-	private Position source;		
+	private Position source;
+
+    public static enum InteractionResult {
+        DESTROY_VISITOR, DESTROY_HOST, DESTROY_BOTH, KEEP_BOTH, REPLACE_HOST }
 	
 
 	public Interaction(Position source) {
@@ -41,7 +36,7 @@ public class Interaction {
             return destination;
         }
 		
-		switch (destination.getHost().affect(source.getHost())) {
+		switch (source.getHost().askToAffect(destination.getHost())) {
 			case DESTROY_VISITOR:
 				source.releaseHost();
 				return null;
@@ -64,4 +59,6 @@ public class Interaction {
                         "Unhandled InteractionResult in Interaction.make(...)");
 		}
 	}
+
+
 }

@@ -3,6 +3,7 @@ package ru.spbau.opeykin.drunkard.game.objects;
 import java.util.LinkedList;
 
 import ru.spbau.opeykin.drunkard.game.GameObjectCreator;
+import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.Position;
 import ru.spbau.opeykin.drunkard.game.objects.Drunkard.State;
 
@@ -19,12 +20,12 @@ public class PoliceDepartment
 	}
 
 	@Override
-	public InteractionResult affect(GameObject gameObject) {
+	public InteractionResult affect(AffectableGameObject gameObject) {
 		return gameObject.getAffected(this);		
 	}
 
 	@Override
-	InteractionResult getAffected(Drunkard drunkard) {
+    InteractionResult getAffected(Drunkard drunkard) {
 		//System.out.println("Police see a drunkard");
 		if (drunkard.getState() == State.SLEEP_LYING) {
 			targetQueue.add(drunkard.getPosition());

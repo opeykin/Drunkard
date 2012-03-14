@@ -9,7 +9,7 @@ import ru.spbau.opeykin.drunkard.game.GameObjectCreator;
  * @author Opeykin Alexander
  *
  */
-abstract class CreatingGameObject extends GameObject {
+abstract class CreatingGameObject extends AffectableGameObject {
 	
 	protected GameObjectCreator creator;
 	

@@ -1,6 +1,7 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
 import ru.spbau.opeykin.drunkard.game.GameObjectCreator;
+import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.Position;
 
 import java.util.LinkedList;
@@ -24,7 +25,7 @@ public class Policeman extends MovableGameObject {
 
 
 	@Override
-	public InteractionResult affect(GameObject gameObject) {
+	public InteractionResult affect(AffectableGameObject gameObject) {
 		return gameObject.getAffected(this);		
 	}
 	
@@ -67,7 +68,7 @@ public class Policeman extends MovableGameObject {
 
 
 	@Override
-	InteractionResult getAffected(Drunkard drunkard) {
+    InteractionResult getAffected(Drunkard drunkard) {
 		if (drunkard.getPosition() == target) {
 			complete = true;
 			return InteractionResult.REPLACE_HOST;
@@ -78,28 +79,28 @@ public class Policeman extends MovableGameObject {
 
 
 	@Override
-	InteractionResult getAffected(Lamp lamp) {
+    InteractionResult getAffected(Lamp lamp) {
 		updateRoute();
 		return InteractionResult.KEEP_BOTH;
 	}
 
 
 	@Override
-	InteractionResult getAffected(Pole pole) {
+    InteractionResult getAffected(Pole pole) {
 		updateRoute();
 		return InteractionResult.KEEP_BOTH;
 	}
 
 
 	@Override
-	InteractionResult getAffected(Policeman policeman) {
+    InteractionResult getAffected(Policeman policeman) {
 		updateRoute();
 		return InteractionResult.KEEP_BOTH;
 	}
 
 
 	@Override
-	InteractionResult getAffected(Bottle bottle) {
+    InteractionResult getAffected(Bottle bottle) {
 		updateRoute();
 		return InteractionResult.KEEP_BOTH;
 	}

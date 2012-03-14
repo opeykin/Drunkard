@@ -3,6 +3,7 @@ package ru.spbau.opeykin.drunkard.game.objects;
 import java.util.Random;
 
 import ru.spbau.opeykin.drunkard.game.GameObjectCreator;
+import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.Position;
 import ru.spbau.opeykin.drunkard.game.GameConstants;
 
@@ -63,8 +64,6 @@ public class Drunkard extends MovableGameObject {
 			y = value;
 		}
 		
-		//System.out.println("x = " + new Integer(x).toString());
-		//System.out.println("y = " + new Integer(y).toString());
 		step(x,y);
 	}
 	
@@ -75,13 +74,13 @@ public class Drunkard extends MovableGameObject {
 		
 
 	@Override
-	public InteractionResult affect(GameObject gameObject) {
+	public InteractionResult affect(AffectableGameObject gameObject) {
 		return gameObject.getAffected(this);		
 	}
 
 
 	@Override
-	InteractionResult getAffected(Drunkard drunkard) {
+    InteractionResult getAffected(Drunkard drunkard) {
 		switch (drunkard.state) {
 			case ACTIVE:
 				// do nothing. just skip this turn.
@@ -100,23 +99,23 @@ public class Drunkard extends MovableGameObject {
 
 
 	@Override
-	InteractionResult getAffected(Lamp lamp) {
+    InteractionResult getAffected(Lamp lamp) {
 		state = State.SLEEP_STANDING;
 		return InteractionResult.KEEP_BOTH;
 	}
 
 
 	@Override
-	InteractionResult getAffected(Pole pole) {
+    InteractionResult getAffected(Pole pole) {
 		state = State.SLEEP_STANDING;
 		return InteractionResult.KEEP_BOTH;
 	}
 
 
 	@Override
-	InteractionResult getAffected(Bottle actor) {
+    InteractionResult getAffected(Bottle actor) {
 		state = State.SLEEP_LYING;
-		return InteractionResult.REPLACE_HOST;		
+		return InteractionResult.REPLACE_HOST;
 	}
 
 

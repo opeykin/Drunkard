@@ -1,6 +1,7 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
 import ru.spbau.opeykin.drunkard.game.GameObjectCreator;
+import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 
 
 public class BarrelHouse extends CreatingGameObject {
