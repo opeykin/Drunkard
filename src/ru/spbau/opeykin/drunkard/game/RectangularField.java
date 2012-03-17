@@ -39,10 +39,10 @@ public class RectangularField implements Field {
 	
 	private void createGameObjects() {
 		
-		int dY = GameConstants.druncardCreatingLocationY;
-		int dX = GameConstants.druncardCreatingLocationX;
+		int dY = GameConstants.drunkardCreatingLocationY;
+		int dX = GameConstants.drunkardCreatingLocationX;
 		barrelHouse = new BarrelHouse(
-                new GameObjectAdder(field[dY][dX]), GameConstants.druncardCreatingPeriod);
+                new GameObjectAdder(field[dY][dX]), GameConstants.drunkardCreatingPeriod);
 
 		int pY = GameConstants.policemanCreatingLocationY;
 		int pX = GameConstants.policemanCreatingLocationX;
