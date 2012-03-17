@@ -17,10 +17,13 @@ public class RectangularField implements Field {
 	private int width;
 	
 	private Position [][] field;
-	
-	private PoliceDepartment policeDepartment;
-	
-	private GameObject barrelHouse;
+
+
+    private PoliceDepartment policeDepartment;
+
+
+
+    private GameObject barrelHouse;
 	
 
 	public RectangularField(int height, int width) {
@@ -38,24 +41,17 @@ public class RectangularField implements Field {
 	}
 	
 	private void createGameObjects() {
-		
-		int dY = GameConstants.drunkardCreatingLocationY;
-		int dX = GameConstants.drunkardCreatingLocationX;
-		barrelHouse = new BarrelHouse(
+        int dY = GameConstants.drunkardCreatingLocationY;
+        int dX = GameConstants.drunkardCreatingLocationX;
+
+        barrelHouse = new BarrelHouse(
                 new GameObjectAdder(field[dY][dX]), GameConstants.drunkardCreatingPeriod);
 
-		int pY = GameConstants.policemanCreatingLocationY;
-		int pX = GameConstants.policemanCreatingLocationX;
-		policeDepartment = new PoliceDepartment(
+        int pY = GameConstants.policemanCreatingLocationY;
+        int pX = GameConstants.policemanCreatingLocationX;
+
+        policeDepartment = new PoliceDepartment(
                 new GameObjectAdder(field[pY][pX]));
-
-        // TODO swap lamp and pole according to rules
-        Position polePosition = field[10][7];
-		new GameObjectAdder(polePosition).add(new Pole(polePosition));
-
-        Position lampPosition = field[6][7];
-        new GameObjectAdder(lampPosition).add(
-                new Lamp(lampPosition, policeDepartment, GameConstants.lampLightRadius));
 	}
 	
 	
@@ -75,7 +71,7 @@ public class RectangularField implements Field {
 	@Override
 	public
 	void draw() {
-		System.out.println(getIdent(GameConstants.barrelHouseDrawLocation) + 
+		System.out.println(getIdent(GameConstants.barrelHouseDrawLocation) +
 						   BarrelHouse.getChar());
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
@@ -83,13 +79,18 @@ public class RectangularField implements Field {
 			}
 			System.out.println();
 		}
-		System.out.println(getIdent(GameConstants.policeDepartmentDrawLocation) + 
+		System.out.println(getIdent(GameConstants.policeDepartmentDrawLocation) +
 				   		   PoliceDepartment.getChar() + "\n");
 	}
 	
 	public PoliceDepartment getPoliceDepartment() {
 		return policeDepartment;
 	}
+
+
+    Position[][] getAllPositions() {
+        return field;
+    }
 
 
 	@Override
