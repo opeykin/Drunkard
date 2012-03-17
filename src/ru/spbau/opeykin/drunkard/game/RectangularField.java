@@ -69,18 +69,19 @@ public class RectangularField implements Field {
 
 
 	@Override
-	public
-	void draw() {
+	public void draw() {
 		System.out.println(getIdent(GameConstants.barrelHouseDrawLocation) +
 						   BarrelHouse.getChar());
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
 				System.out.print(field[i][j].getSymbol());
 			}
-			System.out.println();
+            if (i == GameConstants.policeDepartmentDrawLocation) {
+			    System.out.print(PoliceDepartment.getChar());
+            }
+            System.out.println();
 		}
-		System.out.println(getIdent(GameConstants.policeDepartmentDrawLocation) +
-				   		   PoliceDepartment.getChar() + "\n");
+        System.out.println();
 	}
 	
 	public PoliceDepartment getPoliceDepartment() {

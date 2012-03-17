@@ -33,7 +33,8 @@ public class Drunkard extends MovableGameObject {
 		case SLEEP_STANDING:
 			return '1';
 		default:
-			return '!';
+			throw new UnsupportedOperationException(
+                    "Unsupported drunkard state: " + state);
 		}
 	}
 	
@@ -95,13 +96,6 @@ public class Drunkard extends MovableGameObject {
                 throw new UnsupportedOperationException(
                         "Unhandled state in Drunkard.getAffected(Drunkard)");
 		}
-	}
-
-
-	@Override
-    InteractionResult getAffected(Lamp lamp) {
-		state = State.SLEEP_STANDING;
-		return InteractionResult.KEEP_BOTH;
 	}
 
 

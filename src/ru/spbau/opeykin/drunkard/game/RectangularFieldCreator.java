@@ -14,11 +14,10 @@ public class RectangularFieldCreator {
 
         Position [][] positions = field.getAllPositions();
 
-        // TODO swap lamp and pole according to rules
-        Position polePosition = positions[10][7];
+        Position polePosition = positions[7][7];
         new GameObjectAdder(polePosition).add(new Pole(polePosition));
 
-        Position lampPosition = positions[6][7];
+        Position lampPosition = positions[3][10];
         new GameObjectAdder(lampPosition).add(
                 new Lamp(lampPosition, field.getPoliceDepartment(), GameConstants.lampLightRadius));
 
