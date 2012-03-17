@@ -7,9 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 
-import ru.spbau.opeykin.drunkard.game.objects.BarrelHouse;
-import ru.spbau.opeykin.drunkard.game.objects.GameObject;
-import ru.spbau.opeykin.drunkard.game.objects.PoliceDepartment;
+import ru.spbau.opeykin.drunkard.game.objects.*;
 
 
 public class RectangularField implements Field {
@@ -43,23 +41,21 @@ public class RectangularField implements Field {
 		
 		int dY = GameConstants.druncardCreatingLocationY;
 		int dX = GameConstants.druncardCreatingLocationX;
-		barrelHouse = 
-				new GameObjectCreator(field[dY][dX]).createBarrelHouse(5);
+		barrelHouse = new BarrelHouse(
+                new GameObjectAdder(field[dY][dX]), GameConstants.druncardCreatingPeriod);
 
 		int pY = GameConstants.policemanCreatingLocationY;
 		int pX = GameConstants.policemanCreatingLocationX;
-		policeDepartment = 
-				new GameObjectCreator(field[pY][pX]).createPoliceDepartment();
+		policeDepartment = new PoliceDepartment(
+                new GameObjectAdder(field[pY][pX]));
 
         // TODO swap lamp and pole according to rules
-		new GameObjectCreator(field[10][7]).createPole();
-		new GameObjectCreator(field[6][7]).createLamp(GameConstants.lampLightRadius);
-		/*
-		new GameObjectCreator(field[9][7]).createBottle();
-		new GameObjectCreator(field[10][6]).createBottle();
-		new GameObjectCreator(field[11][7]).createBottle();
-		new GameObjectCreator(field[10][8]).createBottle();
-		*/
+        Position polePosition = field[10][7];
+		new GameObjectAdder(polePosition).add(new Pole(polePosition));
+
+        Position lampPosition = field[6][7];
+        new GameObjectAdder(lampPosition).add(
+                new Lamp(lampPosition, policeDepartment, GameConstants.lampLightRadius));
 	}
 	
 	

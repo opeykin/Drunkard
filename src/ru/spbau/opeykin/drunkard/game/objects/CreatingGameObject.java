@@ -1,6 +1,6 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
-import ru.spbau.opeykin.drunkard.game.GameObjectCreator;
+import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 
 
 /**
@@ -11,12 +11,12 @@ import ru.spbau.opeykin.drunkard.game.GameObjectCreator;
  */
 abstract class CreatingGameObject extends AffectableGameObject {
 	
-	protected GameObjectCreator creator;
+	protected GameObjectAdder adder;
 	
 	
-	protected CreatingGameObject(GameObjectCreator creator) {
+	protected CreatingGameObject(GameObjectAdder adder) {
 		super();
-		this.creator = creator;
+		this.adder = adder;
 	}
 
 	@Override

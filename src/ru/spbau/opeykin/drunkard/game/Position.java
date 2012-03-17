@@ -50,6 +50,11 @@ public class Position {
 
 
     void setHost(GameObject visitor) {
+        if (!isFree()) {
+            throw new IllegalStateException(
+                    "trying to set " + visitor.toString() + " to " + this.toString() +
+                    "while already having host: " + host.toString());
+        }
         host = visitor;
 
         for (Listener listener : listeners) {

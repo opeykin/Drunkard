@@ -2,7 +2,7 @@ package ru.spbau.opeykin.drunkard.game.objects;
 
 import java.util.Random;
 
-import ru.spbau.opeykin.drunkard.game.GameObjectCreator;
+import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.Position;
 import ru.spbau.opeykin.drunkard.game.GameConstants;
@@ -121,11 +121,11 @@ public class Drunkard extends MovableGameObject {
 
 
 	@Override
-	protected void leavePosition(GameObjectCreator creator) {
+	protected void leavePosition(GameObjectAdder adder) {
 		if (haveBottle) {
 			Random random = new Random();
 			if (random.nextInt(GameConstants.drunkardBottleDropProb) == 0) {
-				creator.createBottle();
+                adder.add(new Bottle(adder.position));
 				haveBottle = false;
 			}
 		}

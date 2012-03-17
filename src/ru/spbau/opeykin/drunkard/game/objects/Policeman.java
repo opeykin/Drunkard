@@ -1,6 +1,6 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
-import ru.spbau.opeykin.drunkard.game.GameObjectCreator;
+import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.Position;
 
@@ -62,7 +62,7 @@ public class Policeman extends MovableGameObject {
 
 
 	@Override
-	protected void leavePosition(GameObjectCreator creator) {
+	protected void leavePosition(GameObjectAdder adder) {
         route.pollFirst();
 	}
 
