@@ -18,18 +18,15 @@ public class RectangularField implements Field {
 	
 	private Position [][] field;
 
-
     private PoliceDepartment policeDepartment;
-
-
 
     private GameObject barrelHouse;
 	
 
-	public RectangularField(int height, int width) {
+	public RectangularField() {
 		super();
-		this.height = height;
-		this.width = width;
+		this.height = GameConstants.fieldHeight;
+		this.width = GameConstants.fieldWidth;
 		field = new Position [height][width];
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
@@ -89,7 +86,7 @@ public class RectangularField implements Field {
 	}
 
 
-    Position[][] getAllPositions() {
+    public Position[][] getAllPositions() {
         return field;
     }
 

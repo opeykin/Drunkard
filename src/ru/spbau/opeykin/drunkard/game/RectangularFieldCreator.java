@@ -8,9 +8,8 @@ import ru.spbau.opeykin.drunkard.game.objects.Pole;
  * Date: 3/17/12
  */
 public class RectangularFieldCreator {
-    public static Field create () {
-        RectangularField field = new RectangularField(
-                GameConstants.fieldHeight, GameConstants.fieldWidth);
+    public static RectangularField create () {
+        RectangularField field = new RectangularField();
 
         Position [][] positions = field.getAllPositions();
 

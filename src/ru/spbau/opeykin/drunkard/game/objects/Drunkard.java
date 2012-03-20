@@ -11,11 +11,9 @@ import ru.spbau.opeykin.drunkard.game.GameConstants;
 public class Drunkard extends MovableGameObject {
 
 	public enum State { ACTIVE, SLEEP_LYING, SLEEP_STANDING }
-	
-	
+
 	private State state = State.ACTIVE;
-	
-	
+
 	boolean haveBottle = true;
 	
 	
