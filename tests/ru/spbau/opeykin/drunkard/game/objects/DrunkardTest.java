@@ -4,6 +4,8 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+
+import org.junit.Before;
 import org.junit.Test;
 import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 import ru.spbau.opeykin.drunkard.game.Position;
@@ -14,13 +16,17 @@ import ru.spbau.opeykin.drunkard.game.RectangularField;
  * Date: 3/19/12
  */
 public class DrunkardTest {
+    RectangularField field;
+    Position[][] positions;
+
+    @Before
+    public void prepare() throws Exception {
+        field = new RectangularField();
+        positions = field.getAllPositions();
+    }
 
     @Test
     public void testSleepAgainstPole() throws Exception{
-        RectangularField field = new RectangularField();
-
-        Position[][] positions = field.getAllPositions();
-
         new GameObjectAdder(positions[1][0]).add(new Pole(positions[1][0]));
         new GameObjectAdder(positions[1][2]).add(new Pole(positions[1][2]));
         new GameObjectAdder(positions[0][1]).add(new Pole(positions[0][1]));
@@ -38,10 +44,6 @@ public class DrunkardTest {
 
     @Test
     public void testSleepAgainstBottle() throws Exception{
-        RectangularField field = new RectangularField();
-
-        Position[][] positions = field.getAllPositions();
-
         new GameObjectAdder(positions[1][0]).add(new Bottle(positions[1][0]));
         new GameObjectAdder(positions[1][2]).add(new Bottle(positions[1][2]));
         new GameObjectAdder(positions[0][1]).add(new Bottle(positions[0][1]));
@@ -59,10 +61,6 @@ public class DrunkardTest {
     
     @Test
     public void testFreeMove() throws Exception{
-        RectangularField field = new RectangularField();
-
-        Position[][] positions = field.getAllPositions();
-
         Position startPosition = positions[1][1];
         Drunkard drunkard = new Drunkard(startPosition);
         new GameObjectAdder(startPosition).add(drunkard);
@@ -77,10 +75,6 @@ public class DrunkardTest {
 
     @Test
     public void testDoNotSleepAgainstLamp() throws Exception{
-        RectangularField field = new RectangularField();
-
-        Position[][] positions = field.getAllPositions();
-
         new GameObjectAdder(positions[1][0]).add(new Lamp(positions[1][0], field.getPoliceDepartment(),1));
         new GameObjectAdder(positions[1][2]).add(new Lamp(positions[1][2], field.getPoliceDepartment(),1));
         new GameObjectAdder(positions[0][1]).add(new Lamp(positions[0][1], field.getPoliceDepartment(),1));
@@ -97,10 +91,6 @@ public class DrunkardTest {
 
     @Test
     public void testDoNotSleepAgainstDrunkard() throws Exception{
-        RectangularField field = new RectangularField();
-
-        Position[][] positions = field.getAllPositions();
-
         new GameObjectAdder(positions[1][0]).add(new Drunkard(positions[1][0]));
         new GameObjectAdder(positions[1][2]).add(new Drunkard(positions[1][2]));
         new GameObjectAdder(positions[0][1]).add(new Drunkard(positions[0][1]));
