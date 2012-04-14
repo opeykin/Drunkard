@@ -50,18 +50,24 @@ public class RectangularField implements Field {
         policeDepartment = new PoliceDepartment(
                 new GameObjectAdder(field[pY][pX]));
 	}
-	
-	
-	@Override
+
+    @Override
+    public boolean hasPosition(Position source, int shiftX, int shiftY) {
+        int x = source.getX() + shiftX;
+        int y = source.getY() + shiftY;
+
+        return (x >= 0) && (x < width) && (y >= 0) && (y < height);
+    }
+
+    @Override
 	public Position getPosition(Position source, int shiftX, int shiftY) {
-		int x = source.getX() + shiftX;
-		int y = source.getY() + shiftY;
-		
-		if ((x >= 0) && (x < width) && (y >= 0) && (y < height)) {
-			return field[y][x];
-		} else {
-			return null;
-		}
+        if (!hasPosition(source, shiftX, shiftY)) {
+            throw new IllegalArgumentException(
+                    source.toString() + " doesn't have neighbour with shifts X: " +
+                    shiftX + " Y: " + shiftY);
+        }
+
+        return field[source.getY() + shiftY][source.getX() + shiftX];
 	}
 
 
@@ -139,11 +145,17 @@ public class RectangularField implements Field {
 					if (shiftX == 0 && shiftY == 0) {
 						continue;
 					}
+
+                    if (!cur.hasNeighbour(shiftX, shiftY)) {
+                        continue;
+                    }
+
 					Position next = cur.getPosition(shiftX, shiftY);
-					if (next == null || 
-							(!next.isFree() && next != destination)) {
+
+					if (!next.isFree() && next != destination) {
 						continue;
 					}
+
 					if (!res.containsKey(next)) {
 						res.put(next, cur);
 						queue.add(next);

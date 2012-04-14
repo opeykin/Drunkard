@@ -17,20 +17,14 @@ public class Interaction {
 	
 	
 	public void setListener(int shiftX, int shiftY, Listener listener) {
-		Position position = source.getPosition(shiftX, shiftY);
-		
-		if (position != null) {
-			position.setListener(listener);
-		}
+        if (source.hasNeighbour(shiftX, shiftY)) {
+            source.getPosition(shiftX, shiftY).setListener(listener);
+
+        }
 	}
 
 	
 	public Position move(Position destination) {
-		
-		if (destination == null) { // wrong move(out of field)
-			// TODO: may be needed to do some thing after wrong move
-			return source;
-		}
         if (destination.isFree()) {
             destination.denudeContent(source);
             return destination;

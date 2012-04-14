@@ -36,6 +36,20 @@ public class RectangularFieldTest {
     }
 
     @Test
+    public void testWrongGetPosition() throws Exception {
+        Position base = positions[0][0];
+
+        try {
+            field.getPosition(base, -1, 0);
+            Assert.fail();
+        } catch (IllegalArgumentException e) {
+            Assert.assertEquals(
+                    e.getMessage(),
+                    "Position [x=0, y=0] doesn't have neighbour with shifts X: -1 Y: 0");
+        }
+    }
+
+    @Test
     public void testGetAllPositions() throws Exception {
         Assert.assertEquals(positions.length, GameConstants.fieldHeight);
         Assert.assertEquals(positions[0].length, GameConstants.fieldWidth);

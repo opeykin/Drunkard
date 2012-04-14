@@ -36,6 +36,10 @@ public class Position {
         return field.getPosition(this, shiftX, shiftY);
     }
 
+    public boolean hasNeighbour(int shiftX, int shiftY) {
+        return field.hasPosition(this, shiftX, shiftY);
+    }
+
 
     void denudeContent(Position position) {
         releaseHost();
@@ -49,12 +53,13 @@ public class Position {
     }
 
 
-    void setHost(GameObject visitor) {
+    public void setHost(GameObject visitor) {
         if (!isFree()) {
             throw new IllegalStateException(
                     "trying to set " + visitor.toString() + " to " + this.toString() +
                     "while already having host: " + host.toString());
         }
+
         host = visitor;
 
         for (Listener listener : listeners) {
@@ -76,7 +81,7 @@ public class Position {
     }
 
 
-    boolean isFree() {
+    public boolean isFree() {
         return host == null;
     }
 

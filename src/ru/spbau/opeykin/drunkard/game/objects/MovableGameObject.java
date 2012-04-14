@@ -16,7 +16,9 @@ abstract class MovableGameObject extends AffectableGameObject {
 	}
 	
 	protected void step(int shiftX, int shiftY) {
-		step(position.getPosition(shiftX, shiftY));
+        if (position.hasNeighbour(shiftX, shiftY)) {
+            step(position.getPosition(shiftX, shiftY));
+        }
 	}
 
 

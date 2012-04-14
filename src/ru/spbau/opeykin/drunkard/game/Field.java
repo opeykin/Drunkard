@@ -13,6 +13,8 @@ import java.util.List;
 public interface Field {
     Position getPosition(Position source, int shiftX, int shiftY);
 
+    boolean hasPosition(Position source, int shiftX, int shiftY);
+
     void draw();
 
     List<GameObject> getObjects();
