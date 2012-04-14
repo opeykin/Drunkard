@@ -18,7 +18,7 @@ public class Interaction {
 	
 	public void setListener(int shiftX, int shiftY, Listener listener) {
         if (source.hasNeighbour(shiftX, shiftY)) {
-            source.getPosition(shiftX, shiftY).setListener(listener);
+            source.getPosition(shiftX, shiftY).addListener(listener);
 
         }
 	}
