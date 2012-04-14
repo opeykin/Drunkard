@@ -1,9 +1,6 @@
 package ru.spbau.opeykin.drunkard.game;
 
-import ru.spbau.opeykin.drunkard.game.objects.BarrelHouse;
-import ru.spbau.opeykin.drunkard.game.objects.Lamp;
-import ru.spbau.opeykin.drunkard.game.objects.Pole;
-import ru.spbau.opeykin.drunkard.game.objects.PoliceDepartment;
+import ru.spbau.opeykin.drunkard.game.objects.*;
 
 /**
  * User: Alexander Opeykin
@@ -42,6 +39,11 @@ public class RectangularFieldCreator {
 
         Position lampPosition = positions[3][10];
         new Lamp(lampPosition, 4).addListener(policeDepartment);
+
+        Position beggarPosition = positions[14][4];
+        new Beggar(beggarPosition, beggarPosition);
+
+        new Bottle(positions[12][0]);
 
         return field;
     }

@@ -44,6 +44,14 @@ public abstract class AffectableGameObject implements GameObject {
 	InteractionResult getAffected(PoliceDepartment policeDepartment) {
 		return InteractionResult.KEEP_BOTH;
 	}
+
+    InteractionResult getAffected(Beggar beggar) {
+        return InteractionResult.KEEP_BOTH;
+    }
+
+    InteractionResult getAffected(BottleBase base) {
+        return InteractionResult.KEEP_BOTH;
+    }
 	
 	InteractionResult getAffected(BarrelHouse barrelHouse) {
         throw new UnsupportedOperationException(

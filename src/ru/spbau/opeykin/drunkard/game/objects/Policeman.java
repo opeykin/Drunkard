@@ -3,23 +3,17 @@ package ru.spbau.opeykin.drunkard.game.objects;
 import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.Position;
 
-import java.util.LinkedList;
 
-public class Policeman extends MovableGameObject {
-	
-	private Position target;
-	
-	Position returnPosition;
+public class Policeman extends RouteGoingGameObject {
+
+    Position returnPosition;
 	
 	private boolean complete = false;
-	
-	private LinkedList<Position> route;
 
 
-	public Policeman(Position position, Position target, Position returnPosition) {
-		super(position);
-		this.target = target;
-		this.returnPosition = returnPosition;
+    public Policeman(Position position, Position target, Position returnPosition) {
+		super(position, target);
+        this.returnPosition = returnPosition;
 	}
 
 
@@ -28,7 +22,8 @@ public class Policeman extends MovableGameObject {
 		return gameObject.getAffected(this);		
 	}
 	
-	private void updateRoute() {
+	@Override
+    protected void updateRoute() {
 		if (complete) {
 			route = getRoute(returnPosition);
 		} else {
@@ -40,24 +35,16 @@ public class Policeman extends MovableGameObject {
 	@Override
 	public void doTurn() {
 		if (complete && getPosition() == returnPosition) {
-			getPosition().releaseHost(); // mission accomplished
-			return;
-		}
-		
-		if (route == null || route.isEmpty()) {
-			updateRoute();
-		}
-		
-		if (route == null) {
-			// no route exists for the moment
+			finish();
 			return;
 		}
 
-        boolean isMoved = step(route.getFirst());
-        if (!isMoved) {
-            updateRoute();
-        }
+        goRoute();
 	}
+
+    protected void finish() {
+        getPosition().releaseHost(); // mission accomplished
+    }
 
     @Override
     protected void leavePosition(Position leavedPosition) {
@@ -75,32 +62,34 @@ public class Policeman extends MovableGameObject {
 	}
 
 
-	@Override
-    InteractionResult getAffected(Lamp lamp) {
-		updateRoute();
-		return InteractionResult.KEEP_BOTH;
-	}
 
-
-	@Override
-    InteractionResult getAffected(Pole pole) {
-		updateRoute();
-		return InteractionResult.KEEP_BOTH;
-	}
-
-
-	@Override
-    InteractionResult getAffected(Policeman policeman) {
-		updateRoute();
-		return InteractionResult.KEEP_BOTH;
-	}
-
-
-	@Override
-    InteractionResult getAffected(Bottle bottle) {
-		updateRoute();
-		return InteractionResult.KEEP_BOTH;
-	}
+    //
+//	@Override
+//    InteractionResult getAffected(Lamp lamp) {
+//		updateRoute();
+//		return InteractionResult.KEEP_BOTH;
+//	}
+//
+//
+//	@Override
+//    InteractionResult getAffected(Pole pole) {
+//		updateRoute();
+//		return InteractionResult.KEEP_BOTH;
+//	}
+//
+//
+//	@Override
+//    InteractionResult getAffected(Policeman policeman) {
+//		updateRoute();
+//		return InteractionResult.KEEP_BOTH;
+//	}
+//
+//
+//	@Override
+//    InteractionResult getAffected(Bottle bottle) {
+//		updateRoute();
+//		return InteractionResult.KEEP_BOTH;
+//	}
 
 
 	@Override

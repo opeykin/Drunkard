@@ -6,7 +6,7 @@ import ru.spbau.opeykin.drunkard.game.Position;
 /**
  * Class of objects able to create another objects (like PoliceDepartment)
  * 
- * @author Opeykin Alexander
+ * @author Opeykin Alexander       k
  *
  */
 abstract class CreatingGameObject extends AffectableGameObject {
