@@ -15,10 +15,12 @@ import java.util.List;
 public class RectangularFieldTest {
     RectangularField field;
     Position[][] positions;
+    int fieldWidth = 15;
+    int fieldHeight = 15;
 
     @Before
     public void prepare() throws Exception {
-        field = new RectangularField();
+        field = new RectangularField(fieldHeight, fieldWidth);
         positions = field.getAllPositions();
     }
 
@@ -26,8 +28,8 @@ public class RectangularFieldTest {
     public void testGetPosition() throws Exception {
         Position base = positions[0][0];
 
-        for (int i = 0; i < GameConstants.fieldHeight; ++i) {
-            for (int j = 0; j < GameConstants.fieldWidth; ++j) {
+        for (int i = 0; i < fieldHeight; ++i) {
+            for (int j = 0; j < fieldWidth; ++j) {
                 Position position = field.getPosition(base, j, i);
                 Assert.assertEquals(position.getY(), i);
                 Assert.assertEquals(position.getX(), j);
@@ -51,11 +53,11 @@ public class RectangularFieldTest {
 
     @Test
     public void testGetAllPositions() throws Exception {
-        Assert.assertEquals(positions.length, GameConstants.fieldHeight);
-        Assert.assertEquals(positions[0].length, GameConstants.fieldWidth);
+        Assert.assertEquals(positions.length, 15);
+        Assert.assertEquals(positions[0].length, 15);
 
-        for (int i = 0; i < GameConstants.fieldHeight; ++i) {
-            for (int j = 0; j < GameConstants.fieldWidth; ++j) {
+        for (int i = 0; i < fieldHeight; ++i) {
+            for (int j = 0; j < fieldWidth; ++j) {
                 Assert.assertEquals(positions[i][j].getY(), i);
                 Assert.assertEquals(positions[i][j].getX(), j);
             }

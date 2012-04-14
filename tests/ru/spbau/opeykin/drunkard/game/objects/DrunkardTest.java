@@ -7,7 +7,6 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
-import ru.spbau.opeykin.drunkard.game.GameConstants;
 import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 import ru.spbau.opeykin.drunkard.game.Position;
 import ru.spbau.opeykin.drunkard.game.RectangularField;
@@ -22,7 +21,7 @@ public class DrunkardTest {
 
     @Before
     public void prepare() throws Exception {
-        field = new RectangularField();
+        field = new RectangularField(15, 15);
         positions = field.getAllPositions();
     }
 
@@ -76,8 +75,8 @@ public class DrunkardTest {
 
     @Test
     public void testDoNotSleepAgainstLamp() throws Exception {
-        int pY = GameConstants.policemanCreatingLocationY;
-        int pX = GameConstants.policemanCreatingLocationX;
+        int pY = 3;
+        int pX = 14;
 
         PoliceDepartment policeDepartment = new PoliceDepartment(
                 new GameObjectAdder(positions[pY][pX]));

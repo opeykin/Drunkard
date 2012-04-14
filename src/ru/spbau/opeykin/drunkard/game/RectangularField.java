@@ -13,12 +13,15 @@ public class RectangularField implements Field {
 	private Position [][] field;
 
     private List<GameObject> nonFiledGameObjects = new ArrayList<GameObject>();
+
+    static final int barrelHouseDrawLocation = 9;
+    static final int policeDepartmentDrawLocation = 3;
 	
 
-	public RectangularField() {
+	public RectangularField(int fieldHeight, int fieldWidth) {
 		super();
-		this.height = GameConstants.fieldHeight;
-		this.width = GameConstants.fieldWidth;
+		this.height = fieldHeight;
+		this.width = fieldWidth;
 		field = new Position [height][width];
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
@@ -53,13 +56,13 @@ public class RectangularField implements Field {
 
 	@Override
 	public void draw() {
-		System.out.println(getIdent(GameConstants.barrelHouseDrawLocation) +
+		System.out.println(getIdent(barrelHouseDrawLocation) +
 						   BarrelHouse.getChar());
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
 				System.out.print(field[i][j].getSymbol());
 			}
-            if (i == GameConstants.policeDepartmentDrawLocation) {
+            if (i == policeDepartmentDrawLocation) {
 			    System.out.print(PoliceDepartment.getChar());
             }
             System.out.println();

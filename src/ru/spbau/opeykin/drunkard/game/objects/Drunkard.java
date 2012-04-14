@@ -5,7 +5,6 @@ import java.util.Random;
 import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.Position;
-import ru.spbau.opeykin.drunkard.game.GameConstants;
 
 
 public class Drunkard extends MovableGameObject {
@@ -15,6 +14,8 @@ public class Drunkard extends MovableGameObject {
 	private State state = State.ACTIVE;
 
 	boolean haveBottle = true;
+
+    int drunkardBottleDropProb = 30;
 	
 	
 	public Drunkard(Position position) {
@@ -116,7 +117,7 @@ public class Drunkard extends MovableGameObject {
 	protected void leavePosition(GameObjectAdder adder) {
 		if (haveBottle) {
 			Random random = new Random();
-			if (random.nextInt(GameConstants.drunkardBottleDropProb) == 0) {
+			if (random.nextInt(drunkardBottleDropProb) == 0) {
                 adder.add(new Bottle(adder.position));
 				haveBottle = false;
 			}

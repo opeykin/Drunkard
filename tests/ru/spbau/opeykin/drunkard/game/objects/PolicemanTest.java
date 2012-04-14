@@ -17,7 +17,7 @@ public class PolicemanTest {
 
     @Before
     public void prepare() throws Exception {
-        field = new RectangularField();
+        field = new RectangularField(15, 15);
         positions = field.getAllPositions();
     }
 

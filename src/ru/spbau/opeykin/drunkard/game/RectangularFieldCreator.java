@@ -10,24 +10,34 @@ import ru.spbau.opeykin.drunkard.game.objects.PoliceDepartment;
  * Date: 3/17/12
  */
 public class RectangularFieldCreator {
+    private static int fieldWidth = 15;
+    private static int fieldHeight = 15;
+    static final int drunkardCreatingPeriod = 5;
+    static final int policemanCreatingLocationX = 14;
+    static final int policemanCreatingLocationY = 3;
+
+    static final int drunkardCreatingLocationX = 9;
+    static final int drunkardCreatingLocationY = 0;
+
+
     public static RectangularField create () {
-        RectangularField field = new RectangularField();
+        RectangularField field = new RectangularField(fieldHeight, fieldWidth);
 
         Position [][] positions = field.getAllPositions();
 
 
-        int pY = GameConstants.policemanCreatingLocationY;
-        int pX = GameConstants.policemanCreatingLocationX;
+        int pY = policemanCreatingLocationY;
+        int pX = policemanCreatingLocationX;
 
         PoliceDepartment policeDepartment = new PoliceDepartment(
                 new GameObjectAdder(positions[pY][pX]));
         field.addNonFiledGameObject(policeDepartment);
 
-        int dY = GameConstants.drunkardCreatingLocationY;
-        int dX = GameConstants.drunkardCreatingLocationX;
+        int dY = drunkardCreatingLocationY;
+        int dX = drunkardCreatingLocationX;
 
         BarrelHouse barrelHouse = new BarrelHouse(
-                new GameObjectAdder(positions[dY][dX]), GameConstants.drunkardCreatingPeriod);
+                new GameObjectAdder(positions[dY][dX]), drunkardCreatingPeriod);
         field.addNonFiledGameObject(barrelHouse);
 
         Position polePosition = positions[7][7];
@@ -35,7 +45,7 @@ public class RectangularFieldCreator {
 
         Position lampPosition = positions[3][10];
         new GameObjectAdder(lampPosition).add(
-                new Lamp(lampPosition, policeDepartment, GameConstants.lampLightRadius));
+                new Lamp(lampPosition, policeDepartment, 4));
 
         return field;
     }
