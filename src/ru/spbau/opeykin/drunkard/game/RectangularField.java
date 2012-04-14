@@ -1,12 +1,6 @@
 package ru.spbau.opeykin.drunkard.game;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Collections;
-import java.util.HashMap;
-
-
+import java.util.*;
 import ru.spbau.opeykin.drunkard.game.objects.*;
 
 
@@ -18,9 +12,7 @@ public class RectangularField implements Field {
 	
 	private Position [][] field;
 
-    private PoliceDepartment policeDepartment;
-
-    private GameObject barrelHouse;
+    private List<GameObject> nonFiledGameObjects = new ArrayList<GameObject>();
 	
 
 	public RectangularField() {
@@ -33,23 +25,11 @@ public class RectangularField implements Field {
 				field[i][j] = new Position(this, j, i);				
 			}
 		}
-	
-		createGameObjects();
 	}
-	
-	private void createGameObjects() {
-        int dY = GameConstants.drunkardCreatingLocationY;
-        int dX = GameConstants.drunkardCreatingLocationX;
 
-        barrelHouse = new BarrelHouse(
-                new GameObjectAdder(field[dY][dX]), GameConstants.drunkardCreatingPeriod);
-
-        int pY = GameConstants.policemanCreatingLocationY;
-        int pX = GameConstants.policemanCreatingLocationX;
-
-        policeDepartment = new PoliceDepartment(
-                new GameObjectAdder(field[pY][pX]));
-	}
+    public void addNonFiledGameObject(GameObject gameObject) {
+        nonFiledGameObjects.add(gameObject);
+    }
 
     @Override
     public boolean hasPosition(Position source, int shiftX, int shiftY) {
@@ -86,10 +66,6 @@ public class RectangularField implements Field {
 		}
         System.out.println();
 	}
-	
-	public PoliceDepartment getPoliceDepartment() {
-		return policeDepartment;
-	}
 
 
     public Position[][] getAllPositions() {
@@ -99,10 +75,8 @@ public class RectangularField implements Field {
 
 	@Override
 	public List<GameObject> getObjects() {
-		LinkedList<GameObject> objectList =	new LinkedList<GameObject>();
-		objectList.add(barrelHouse);
-		objectList.add(policeDepartment);
-		
+		LinkedList<GameObject> objectList =	new LinkedList<GameObject>(nonFiledGameObjects);
+
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
 				if (!field[i][j].isFree()) {

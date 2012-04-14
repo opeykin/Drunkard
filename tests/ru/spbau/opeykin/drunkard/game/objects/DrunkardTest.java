@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
+import ru.spbau.opeykin.drunkard.game.GameConstants;
 import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 import ru.spbau.opeykin.drunkard.game.Position;
 import ru.spbau.opeykin.drunkard.game.RectangularField;
@@ -74,11 +75,18 @@ public class DrunkardTest {
 
 
     @Test
-    public void testDoNotSleepAgainstLamp() throws Exception{
-        new GameObjectAdder(positions[1][0]).add(new Lamp(positions[1][0], field.getPoliceDepartment(),1));
-        new GameObjectAdder(positions[1][2]).add(new Lamp(positions[1][2], field.getPoliceDepartment(),1));
-        new GameObjectAdder(positions[0][1]).add(new Lamp(positions[0][1], field.getPoliceDepartment(),1));
-        new GameObjectAdder(positions[2][1]).add(new Lamp(positions[2][1], field.getPoliceDepartment(),1));
+    public void testDoNotSleepAgainstLamp() throws Exception {
+        int pY = GameConstants.policemanCreatingLocationY;
+        int pX = GameConstants.policemanCreatingLocationX;
+
+        PoliceDepartment policeDepartment = new PoliceDepartment(
+                new GameObjectAdder(positions[pY][pX]));
+        field.addNonFiledGameObject(policeDepartment);
+
+        new GameObjectAdder(positions[1][0]).add(new Lamp(positions[1][0], policeDepartment,1));
+        new GameObjectAdder(positions[1][2]).add(new Lamp(positions[1][2], policeDepartment,1));
+        new GameObjectAdder(positions[0][1]).add(new Lamp(positions[0][1], policeDepartment,1));
+        new GameObjectAdder(positions[2][1]).add(new Lamp(positions[2][1], policeDepartment,1));
 
         Drunkard drunkard = new Drunkard(positions[1][1]);
         new GameObjectAdder(positions[1][1]).add(drunkard);

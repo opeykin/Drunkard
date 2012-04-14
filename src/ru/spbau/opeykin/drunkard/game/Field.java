@@ -1,8 +1,6 @@
 package ru.spbau.opeykin.drunkard.game;
 
 import ru.spbau.opeykin.drunkard.game.objects.GameObject;
-import ru.spbau.opeykin.drunkard.game.objects.PoliceDepartment;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,8 +16,6 @@ public interface Field {
     void draw();
 
     List<GameObject> getObjects();
-
-    PoliceDepartment getPoliceDepartment();
 
     LinkedList<Position> getRoute(Position source, Position destination);
 }
