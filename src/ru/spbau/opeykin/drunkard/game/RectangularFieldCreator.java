@@ -10,11 +10,11 @@ public class RectangularFieldCreator {
     private static int fieldWidth = 15;
     private static int fieldHeight = 15;
     static final int drunkardCreatingPeriod = 5;
-    static final int policemanCreatingLocationX = 14;
-    static final int policemanCreatingLocationY = 3;
+    static final int policemanCreatingLocationX = 15;
+    static final int policemanCreatingLocationY = 4;
 
-    static final int drunkardCreatingLocationX = 9;
-    static final int drunkardCreatingLocationY = 0;
+    static final int drunkardCreatingLocationX = 10;
+    static final int drunkardCreatingLocationY = 1;
 
 
     public static RectangularField create () {
@@ -25,26 +25,37 @@ public class RectangularFieldCreator {
         int pY = policemanCreatingLocationY;
         int pX = policemanCreatingLocationX;
 
-        PoliceDepartment policeDepartment = new PoliceDepartment(positions[pY][pX]);
+        positions[4][16].releaseHost(); // destroy wall
+        PoliceDepartment policeDepartment = new PoliceDepartment(
+                positions[4][16], positions[pY][pX]);
         field.addNonFiledGameObject(policeDepartment);
 
         int dY = drunkardCreatingLocationY;
         int dX = drunkardCreatingLocationX;
 
-        BarrelHouse barrelHouse = new BarrelHouse(positions[dY][dX], drunkardCreatingPeriod);
+        positions[0][10].releaseHost(); // destroy wall
+        BarrelHouse barrelHouse = new BarrelHouse(
+                positions[0][10], positions[dY][dX], drunkardCreatingPeriod);
         field.addNonFiledGameObject(barrelHouse);
 
-        Position polePosition = positions[7][7];
+        Position polePosition = positions[8][8];
         new Pole(polePosition);
 
-        Position lampPosition = positions[3][10];
-        new Lamp(lampPosition, 4).addListener(policeDepartment);
+        Position lampPosition = positions[4][11];
+        new Lamp(lampPosition, 5).addListener(policeDepartment);
 
-        Position beggarPosition = positions[14][4];
-        new Beggar(beggarPosition, beggarPosition);
+        positions[16][4].releaseHost(); // destroy wall
+        BottleBase base = new BottleBase(positions[16][4], positions[15][5]);
+        field.addNonFiledGameObject(base);
 
-        new Bottle(positions[12][0]);
+        new Beggar(positions[15][5], positions[16][4]);
+
+        new Bottle(positions[13][1]);
 
         return field;
     }
+//
+//    public static RectangularField createTest () {
+//
+//    }
 }

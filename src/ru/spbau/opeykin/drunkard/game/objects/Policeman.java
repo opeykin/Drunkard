@@ -1,6 +1,7 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
 import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
+
 import ru.spbau.opeykin.drunkard.game.Position;
 
 
@@ -34,17 +35,8 @@ public class Policeman extends RouteGoingGameObject {
 
 	@Override
 	public void doTurn() {
-		if (complete && getPosition() == returnPosition) {
-			finish();
-			return;
-		}
-
         goRoute();
 	}
-
-    protected void finish() {
-        getPosition().releaseHost(); // mission accomplished
-    }
 
     @Override
     protected void leavePosition(Position leavedPosition) {
@@ -61,38 +53,12 @@ public class Policeman extends RouteGoingGameObject {
 		return InteractionResult.KEEP_BOTH;
 	}
 
+    @Override
+    InteractionResult getAffected(PoliceDepartment policeDepartment) {
+        return InteractionResult.RELEASE_VISITOR;
+    }
 
-
-    //
-//	@Override
-//    InteractionResult getAffected(Lamp lamp) {
-//		updateRoute();
-//		return InteractionResult.KEEP_BOTH;
-//	}
-//
-//
-//	@Override
-//    InteractionResult getAffected(Pole pole) {
-//		updateRoute();
-//		return InteractionResult.KEEP_BOTH;
-//	}
-//
-//
-//	@Override
-//    InteractionResult getAffected(Policeman policeman) {
-//		updateRoute();
-//		return InteractionResult.KEEP_BOTH;
-//	}
-//
-//
-//	@Override
-//    InteractionResult getAffected(Bottle bottle) {
-//		updateRoute();
-//		return InteractionResult.KEEP_BOTH;
-//	}
-
-
-	@Override
+    @Override
 	public char getSymbol() {
 		return '!';
 	}

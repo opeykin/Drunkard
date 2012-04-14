@@ -52,10 +52,12 @@ public abstract class AffectableGameObject implements GameObject {
     InteractionResult getAffected(BottleBase base) {
         return InteractionResult.KEEP_BOTH;
     }
+
+    InteractionResult getAffected(Wall wall) {
+        return InteractionResult.KEEP_BOTH;
+    }
 	
 	InteractionResult getAffected(BarrelHouse barrelHouse) {
-        throw new UnsupportedOperationException(
-                this.toString() + " requested to get affected by " +
-                barrelHouse.toString());
+        return InteractionResult.KEEP_BOTH;
     }
 }

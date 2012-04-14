@@ -14,20 +14,28 @@ public class RectangularField implements Field {
 
     private List<GameObject> nonFiledGameObjects = new ArrayList<GameObject>();
 
-    static final int barrelHouseDrawLocation = 9;
-    static final int policeDepartmentDrawLocation = 3;
-	
 
 	public RectangularField(int fieldHeight, int fieldWidth) {
 		super();
-		this.height = fieldHeight;
-		this.width = fieldWidth;
+		this.height = fieldHeight + 2;
+		this.width = fieldWidth + 2;
 		field = new Position [height][width];
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
 				field[i][j] = new Position(this, j, i);				
 			}
 		}
+
+        for (int i = 0; i < height; ++i) {
+            new Wall(field[i][0]);
+            new Wall(field[i][width - 1]);
+        }
+
+        for (int i = 1; i < width - 1; ++i) {
+            new Wall(field[0][i]);
+            new Wall(field[height - 1][i]);
+        }
+
 	}
 
     public void addNonFiledGameObject(GameObject gameObject) {
@@ -56,15 +64,10 @@ public class RectangularField implements Field {
 
 	@Override
 	public void draw() {
-		System.out.println(getIdent(barrelHouseDrawLocation) +
-						   BarrelHouse.getChar());
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
 				System.out.print(field[i][j].getSymbol());
 			}
-            if (i == policeDepartmentDrawLocation) {
-			    System.out.print(PoliceDepartment.getChar());
-            }
             System.out.println();
 		}
         System.out.println();
@@ -80,8 +83,8 @@ public class RectangularField implements Field {
 	public List<GameObject> getObjects() {
 		LinkedList<GameObject> objectList =	new LinkedList<GameObject>(nonFiledGameObjects);
 
-		for (int i = 0; i < height; ++i) {
-			for (int j = 0; j < width; ++j) {
+		for (int i = 1; i < height - 1; ++i) {
+			for (int j = 1; j < width - 1; ++j) {
 				if (!field[i][j].isFree()) {
 					objectList.add(field[i][j].getHost());
 				}
@@ -146,12 +149,5 @@ public class RectangularField implements Field {
 	public LinkedList<Position> getRoute(Position source, Position destination)
 	{
 		return BFS(source, destination);
-	}
-	
-	
-	private static String getIdent(int length) {
-		char[] charArray = new char[length];
-		Arrays.fill(charArray,' ');
-		return new String(charArray);
 	}
 }

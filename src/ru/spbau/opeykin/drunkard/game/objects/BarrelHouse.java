@@ -10,12 +10,12 @@ public class BarrelHouse extends CreatingGameObject {
 	private int counter = 0;
 	
 	private int drunkardCreatingPeriod;
-	
-	public BarrelHouse(Position creatingPosition, int drunkardCreatingPeriod) {
-		super(creatingPosition);
-		this.drunkardCreatingPeriod = drunkardCreatingPeriod;
-		counter = drunkardCreatingPeriod; // to create one at first turn
-	}
+
+    public BarrelHouse(Position position, Position creatingPosition, int drunkardCreatingPeriod) {
+        super(position, creatingPosition);
+        this.drunkardCreatingPeriod = drunkardCreatingPeriod;
+        counter = drunkardCreatingPeriod; // to create one at first turn
+    }
 
 	@Override
 	public InteractionResult affect(AffectableGameObject gameObject) {
@@ -35,8 +35,9 @@ public class BarrelHouse extends CreatingGameObject {
 			}
 		}
 	}
-	
-	public static char getChar() {
-		return 'Т';
-	}
+
+    @Override
+    public char getSymbol() {
+        return 'T';
+    }
 }

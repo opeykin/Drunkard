@@ -6,7 +6,7 @@ public class Interaction {
 	private Position source;
 
     public static enum InteractionResult {
-        DESTROY_VISITOR, DESTROY_HOST, DESTROY_BOTH, KEEP_BOTH, REPLACE_HOST }
+        RELEASE_VISITOR, DESTROY_HOST, DESTROY_BOTH, KEEP_BOTH, REPLACE_HOST }
 	
 
 	public Interaction(Position source) {
@@ -21,7 +21,7 @@ public class Interaction {
         }
 		
 		switch (source.getHost().askToAffect(destination.getHost())) {
-			case DESTROY_VISITOR:
+			case RELEASE_VISITOR:
 				source.releaseHost();
 				return null;
 			case DESTROY_HOST:

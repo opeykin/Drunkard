@@ -12,10 +12,10 @@ public class PoliceDepartment
 	private LinkedList<GameObject> objectsToAffect = new LinkedList<GameObject>();
 	
 	private LinkedList<Position> targetQueue = new LinkedList<Position>();
-	
-	public PoliceDepartment(Position creatingPosition) {
-		super(creatingPosition);
-	}
+
+    public PoliceDepartment(Position position, Position creatingPosition) {
+        super(position, creatingPosition);
+    }
 
 	@Override
 	public InteractionResult affect(AffectableGameObject gameObject) {
@@ -40,7 +40,7 @@ public class PoliceDepartment
 		if (!targetQueue.isEmpty()) {
 			if (creatingPosition.isFree()) {
                 new Policeman(
-                        creatingPosition, targetQueue.pollFirst(), creatingPosition);
+                        creatingPosition, targetQueue.pollFirst(), position);
 			}
 		}
 	}
@@ -49,9 +49,9 @@ public class PoliceDepartment
 	public void onEvent(GameObject object) {
 		objectsToAffect.add(object);
 	}
-	
-	
-	public static char getChar() {
-		return 'П';
-	}
+
+    @Override
+    public char getSymbol() {
+        return 'П';
+    }
 }

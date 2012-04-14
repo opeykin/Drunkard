@@ -9,7 +9,7 @@ import ru.spbau.opeykin.drunkard.game.Position;
  */
 public class Beggar extends RouteGoingGameObject {
 
-    private int xDireсtion = 1;
+    private int xDirection = 1;
     private int yDirection = 1;
     private boolean lastTurnHorizontal;
     private boolean lastTurnResult = true;
@@ -50,27 +50,22 @@ public class Beggar extends RouteGoingGameObject {
     @Override
     public void doTurn() {
         if (hasBottle) {
-            if (position.equals(target)) {
-                money += bottleCost;
-                hasBottle = false;
-            } else {
-                goRoute();
-            }
+            goRoute();
             return;
         }
 
         // walking algorithm
         if (lastTurnResult) {
-            lastTurnResult = step(xDireсtion, 0);
+            lastTurnResult = step(xDirection, 0);
             lastTurnHorizontal = true;
         } else {
             if (lastTurnHorizontal) {
-                xDireсtion = -xDireсtion;
+                xDirection = -xDirection;
                 lastTurnResult = step(0, yDirection);
                 lastTurnHorizontal = false;
             } else {
                 yDirection = -yDirection;
-                lastTurnResult = step(xDireсtion, 0);
+                lastTurnResult = step(xDirection, 0);
                 lastTurnHorizontal = true;
             }
         }
@@ -79,6 +74,15 @@ public class Beggar extends RouteGoingGameObject {
     @Override
     public char getSymbol() {
         return 'z';
+    }
+
+    @Override
+    Interaction.InteractionResult getAffected(BottleBase base) {
+        base.addBeggar(this);
+        hasBottle = false;
+        money += 40;
+        base.addBeggar(this);
+        return Interaction.InteractionResult.RELEASE_VISITOR;
     }
 
     @Override

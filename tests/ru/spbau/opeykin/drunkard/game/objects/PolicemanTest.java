@@ -22,25 +22,26 @@ public class PolicemanTest {
 
     @Test
     public void testDestroyDrunkard() throws Exception {
-        Drunkard drunkard = new Drunkard(positions[1][1]);
+        Drunkard drunkard = new Drunkard(positions[2][2]);
 
-        Policeman policeman = new Policeman(positions[0][0], drunkard.getPosition(),positions[0][0]);
+        Policeman policeman = new Policeman(positions[1][1], drunkard.getPosition(),positions[1][1]);
 
         Assert.assertNotNull(drunkard.getPosition());
         policeman.doTurn();
+        Assert.assertEquals(policeman.getPosition(), positions[2][2]);
         Assert.assertNull(drunkard.getPosition());
     }
 
     @Test
     public void testDoNothingIfPathIsBroken() throws Exception {
-        Drunkard drunkard = new Drunkard(positions[2][2]);
+        Drunkard drunkard = new Drunkard(positions[3][3]);
 
-        Position policemanPosition = positions[0][0];
+        Position policemanPosition = positions[1][1];
         Policeman policeman = new Policeman(policemanPosition, drunkard.getPosition(),policemanPosition);
 
-        Position pole1Position = positions[1][0];
-        Position pole2Position = positions[0][1];
-        Position pole3Position = positions[1][1];
+        Position pole1Position = positions[2][1];
+        Position pole2Position = positions[1][2];
+        Position pole3Position = positions[2][2];
         
         Pole pole1 = new Pole(pole1Position);
         Pole pole2 = new Pole(pole2Position);

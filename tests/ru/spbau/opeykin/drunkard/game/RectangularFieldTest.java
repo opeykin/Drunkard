@@ -53,8 +53,8 @@ public class RectangularFieldTest {
 
     @Test
     public void testGetAllPositions() throws Exception {
-        Assert.assertEquals(positions.length, 15);
-        Assert.assertEquals(positions[0].length, 15);
+        Assert.assertEquals(positions.length, 17);
+        Assert.assertEquals(positions[0].length, 17);
 
         for (int i = 0; i < fieldHeight; ++i) {
             for (int j = 0; j < fieldWidth; ++j) {
@@ -66,11 +66,11 @@ public class RectangularFieldTest {
 
     @Test
     public void testBFSNoPathExist() throws Exception {
-        new Pole(positions[0][1]);
-        new Pole(positions[1][1]);
-        new Pole(positions[1][0]);
+        new Pole(positions[1][2]);
+        new Pole(positions[2][2]);
+        new Pole(positions[2][1]);
 
-        Assert.assertNull(field.BFS(positions[0][0], positions[2][2]));
+        Assert.assertNull(field.BFS(positions[1][1], positions[3][3]));
     }
 
     @Test

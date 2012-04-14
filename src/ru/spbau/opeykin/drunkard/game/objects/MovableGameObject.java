@@ -28,6 +28,10 @@ abstract class MovableGameObject extends OnFieldGameObject {
 	protected boolean step(Position destination) {
 		Interaction move = new Interaction(position);
         Position newPosition = move.move(destination);
+
+        if (position == null) { //this object was destroyed
+            return true;
+        }
         
 		if (!position.equals(newPosition)) { // moved
 			if (position.isFree()) {
