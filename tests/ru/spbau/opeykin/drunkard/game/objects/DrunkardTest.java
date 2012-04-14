@@ -7,7 +7,6 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
-import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 import ru.spbau.opeykin.drunkard.game.Position;
 import ru.spbau.opeykin.drunkard.game.RectangularField;
 
@@ -27,14 +26,12 @@ public class DrunkardTest {
 
     @Test
     public void testSleepAgainstPole() throws Exception{
-        new GameObjectAdder(positions[1][0]).add(new Pole(positions[1][0]));
-        new GameObjectAdder(positions[1][2]).add(new Pole(positions[1][2]));
-        new GameObjectAdder(positions[0][1]).add(new Pole(positions[0][1]));
-        new GameObjectAdder(positions[2][1]).add(new Pole(positions[2][1]));
+        new Pole(positions[1][0]);
+        new Pole(positions[1][2]);
+        new Pole(positions[0][1]);
+        new Pole(positions[2][1]);
 
         Drunkard drunkard = new Drunkard(positions[1][1]);
-        new GameObjectAdder(positions[1][1]).add(drunkard);
-
         drunkard.doTurn();
 
         assertEquals(drunkard.getState(), Drunkard.State.SLEEP_STANDING);
@@ -44,14 +41,12 @@ public class DrunkardTest {
 
     @Test
     public void testSleepAgainstBottle() throws Exception{
-        new GameObjectAdder(positions[1][0]).add(new Bottle(positions[1][0]));
-        new GameObjectAdder(positions[1][2]).add(new Bottle(positions[1][2]));
-        new GameObjectAdder(positions[0][1]).add(new Bottle(positions[0][1]));
-        new GameObjectAdder(positions[2][1]).add(new Bottle(positions[2][1]));
+        new Bottle(positions[1][0]);
+        new Bottle(positions[1][2]);
+        new Bottle(positions[0][1]);
+        new Bottle(positions[2][1]);
 
         Drunkard drunkard = new Drunkard(positions[1][1]);
-        new GameObjectAdder(positions[1][1]).add(drunkard);
-
         drunkard.doTurn();
 
         assertEquals(drunkard.getState(), Drunkard.State.SLEEP_LYING);
@@ -63,7 +58,6 @@ public class DrunkardTest {
     public void testFreeMove() throws Exception{
         Position startPosition = positions[1][1];
         Drunkard drunkard = new Drunkard(startPosition);
-        new GameObjectAdder(startPosition).add(drunkard);
 
         drunkard.doTurn();
 
@@ -78,18 +72,15 @@ public class DrunkardTest {
         int pY = 3;
         int pX = 14;
 
-        PoliceDepartment policeDepartment = new PoliceDepartment(
-                new GameObjectAdder(positions[pY][pX]));
+        PoliceDepartment policeDepartment = new PoliceDepartment(positions[pY][pX]);
         field.addNonFiledGameObject(policeDepartment);
 
-        new GameObjectAdder(positions[1][0]).add(new Lamp(positions[1][0], policeDepartment,1));
-        new GameObjectAdder(positions[1][2]).add(new Lamp(positions[1][2], policeDepartment,1));
-        new GameObjectAdder(positions[0][1]).add(new Lamp(positions[0][1], policeDepartment,1));
-        new GameObjectAdder(positions[2][1]).add(new Lamp(positions[2][1], policeDepartment,1));
+        new Lamp(positions[1][0], policeDepartment,1);
+        new Lamp(positions[1][2], policeDepartment,1);
+        new Lamp(positions[0][1], policeDepartment,1);
+        new Lamp(positions[2][1], policeDepartment,1);
 
         Drunkard drunkard = new Drunkard(positions[1][1]);
-        new GameObjectAdder(positions[1][1]).add(drunkard);
-
         drunkard.doTurn();
 
         assertEquals(drunkard.getState(), Drunkard.State.ACTIVE);
@@ -98,14 +89,12 @@ public class DrunkardTest {
 
     @Test
     public void testDoNotSleepAgainstDrunkard() throws Exception{
-        new GameObjectAdder(positions[1][0]).add(new Drunkard(positions[1][0]));
-        new GameObjectAdder(positions[1][2]).add(new Drunkard(positions[1][2]));
-        new GameObjectAdder(positions[0][1]).add(new Drunkard(positions[0][1]));
-        new GameObjectAdder(positions[2][1]).add(new Drunkard(positions[2][1]));
+        new Drunkard(positions[1][0]);
+        new Drunkard(positions[1][2]);
+        new Drunkard(positions[0][1]);
+        new Drunkard(positions[2][1]);
 
         Drunkard drunkard = new Drunkard(positions[1][1]);
-        new GameObjectAdder(positions[1][1]).add(drunkard);
-
         drunkard.doTurn();
 
         assertEquals(drunkard.getState(), Drunkard.State.ACTIVE);

@@ -11,6 +11,7 @@ public abstract class OnFileldGameObject extends AffectableGameObject {
     protected Position position;
 
     public OnFileldGameObject(Position position) {
+        position.setHost(this);
         this.position = position;
     }
 

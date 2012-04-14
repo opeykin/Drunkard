@@ -1,9 +1,6 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
 import java.util.LinkedList;
-
-import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
-
 import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.Position;
 import ru.spbau.opeykin.drunkard.game.objects.Drunkard.State;
@@ -16,8 +13,8 @@ public class PoliceDepartment
 	
 	private LinkedList<Position> targetQueue = new LinkedList<Position>();
 	
-	public PoliceDepartment(GameObjectAdder adder) {
-		super(adder);
+	public PoliceDepartment(Position creatingPosition) {
+		super(creatingPosition);
 	}
 
 	@Override
@@ -41,9 +38,9 @@ public class PoliceDepartment
 		}
 		
 		if (!targetQueue.isEmpty()) {
-			if (adder.canAdd()) {
-                adder.add(new Policeman(
-                        adder.position, targetQueue.pollFirst(), adder.position));
+			if (creatingPosition.isFree()) {
+                new Policeman(
+                        creatingPosition, targetQueue.pollFirst(), creatingPosition);
 			}
 		}
 	}

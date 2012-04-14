@@ -1,6 +1,6 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
-import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
+import ru.spbau.opeykin.drunkard.game.Position;
 
 import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 
@@ -11,8 +11,8 @@ public class BarrelHouse extends CreatingGameObject {
 	
 	private int drunkardCreatingPeriod;
 	
-	public BarrelHouse(GameObjectAdder adder, int drunkardCreatingPeriod) {
-		super(adder);
+	public BarrelHouse(Position creatingPosition, int drunkardCreatingPeriod) {
+		super(creatingPosition);
 		this.drunkardCreatingPeriod = drunkardCreatingPeriod;
 		counter = drunkardCreatingPeriod; // to create one at first turn
 	}
@@ -27,8 +27,8 @@ public class BarrelHouse extends CreatingGameObject {
 		if (counter < drunkardCreatingPeriod) {
 			++counter;
 		} else {
-			if (adder.canAdd()) {
-                adder.add(new Drunkard(adder.position));
+			if (creatingPosition.isFree()) {
+                new Drunkard(creatingPosition);
 				counter = 0;
 			} else {
 				// skip this turn then

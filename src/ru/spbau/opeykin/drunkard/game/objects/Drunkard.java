@@ -2,7 +2,6 @@ package ru.spbau.opeykin.drunkard.game.objects;
 
 import java.util.Random;
 
-import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.Position;
 
@@ -114,11 +113,12 @@ public class Drunkard extends MovableGameObject {
 
 
 	@Override
-	protected void leavePosition(GameObjectAdder adder) {
+	protected void leavePosition(Position leavedPosition) {
 		if (haveBottle) {
 			Random random = new Random();
 			if (random.nextInt(drunkardBottleDropProb) == 0) {
-                adder.add(new Bottle(adder.position));
+                // leavedPosition is not checked for being free. It has to be so.
+                new Bottle(leavedPosition);
 				haveBottle = false;
 			}
 		}

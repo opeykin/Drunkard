@@ -3,7 +3,6 @@ package ru.spbau.opeykin.drunkard.game.objects;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 import ru.spbau.opeykin.drunkard.game.Position;
 import ru.spbau.opeykin.drunkard.game.RectangularField;
 
@@ -24,10 +23,8 @@ public class PolicemanTest {
     @Test
     public void testDestroyDrunkard() throws Exception {
         Drunkard drunkard = new Drunkard(positions[1][1]);
-        new GameObjectAdder(positions[1][1]).add(drunkard);
 
         Policeman policeman = new Policeman(positions[0][0], drunkard.getPosition(),positions[0][0]);
-        new GameObjectAdder(positions[0][0]).add(policeman);
 
         Assert.assertNotNull(drunkard.getPosition());
         policeman.doTurn();
@@ -37,12 +34,10 @@ public class PolicemanTest {
     @Test
     public void testDoNothingIfPathIsBroken() throws Exception {
         Drunkard drunkard = new Drunkard(positions[2][2]);
-        new GameObjectAdder(positions[2][2]).add(drunkard);
 
         Position policemanPosition = positions[0][0];
         Policeman policeman = new Policeman(policemanPosition, drunkard.getPosition(),policemanPosition);
-        new GameObjectAdder(policemanPosition).add(policeman);
-        
+
         Position pole1Position = positions[1][0];
         Position pole2Position = positions[0][1];
         Position pole3Position = positions[1][1];
@@ -50,11 +45,6 @@ public class PolicemanTest {
         Pole pole1 = new Pole(pole1Position);
         Pole pole2 = new Pole(pole2Position);
         Pole pole3 = new Pole(pole3Position);
-
-        // broke path with poles
-        new GameObjectAdder(pole1Position).add(pole1);
-        new GameObjectAdder(pole2Position).add(pole2);
-        new GameObjectAdder(pole3Position).add(pole3);
 
         // stood still
         policeman.doTurn();

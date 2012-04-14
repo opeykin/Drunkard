@@ -66,9 +66,9 @@ public class RectangularFieldTest {
 
     @Test
     public void testBFSNoPathExist() throws Exception {
-        new GameObjectAdder(positions[0][1]).add(new Pole(positions[0][1]));
-        new GameObjectAdder(positions[1][1]).add(new Pole(positions[1][1]));
-        new GameObjectAdder(positions[1][0]).add(new Pole(positions[1][0]));
+        new Pole(positions[0][1]);
+        new Pole(positions[1][1]);
+        new Pole(positions[1][0]);
 
         Assert.assertNull(field.BFS(positions[0][0], positions[2][2]));
     }
@@ -90,17 +90,17 @@ public class RectangularFieldTest {
 
     @Test
     public void testBFS() throws Exception {
-        new GameObjectAdder(positions[1][1]).add(new Pole(positions[1][1]));
-        new GameObjectAdder(positions[2][1]).add(new Pole(positions[2][1]));    
-        new GameObjectAdder(positions[3][1]).add(new Pole(positions[3][1]));    
-        new GameObjectAdder(positions[4][1]).add(new Pole(positions[4][1]));    
-        new GameObjectAdder(positions[5][1]).add(new Pole(positions[5][1]));
+        new Pole(positions[1][1]);
+        new Pole(positions[2][1]);
+        new Pole(positions[3][1]);
+        new Pole(positions[4][1]);
+        new Pole(positions[5][1]);
 
-        new GameObjectAdder(positions[1][3]).add(new Pole(positions[1][3]));
-        new GameObjectAdder(positions[2][3]).add(new Pole(positions[2][3]));
-        new GameObjectAdder(positions[3][3]).add(new Pole(positions[3][3]));
-        new GameObjectAdder(positions[4][3]).add(new Pole(positions[4][3]));
-        new GameObjectAdder(positions[5][3]).add(new Pole(positions[5][3]));
+        new Pole(positions[1][3]);
+        new Pole(positions[2][3]);
+        new Pole(positions[3][3]);
+        new Pole(positions[4][3]);
+        new Pole(positions[5][3]);
 
         List<Position> BFSPath = field.BFS(positions[1][2], positions[4][2]);
 

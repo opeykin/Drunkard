@@ -1,8 +1,6 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
 import java.util.LinkedList;
-
-import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 import ru.spbau.opeykin.drunkard.game.Interaction;
 import ru.spbau.opeykin.drunkard.game.Position;
 
@@ -30,9 +28,8 @@ abstract class MovableGameObject extends OnFileldGameObject {
         Position newPosition = move.move(destination);
         
 		if (!position.equals(newPosition)) { // moved
-			GameObjectAdder adder = new GameObjectAdder(position);
-			if (adder.canAdd()) {
-				leavePosition(adder);
+			if (position.isFree()) {
+				leavePosition(position);
 			}
             position = newPosition;
             return true;
@@ -41,7 +38,7 @@ abstract class MovableGameObject extends OnFileldGameObject {
         return false;
 	}
 
-    protected void leavePosition(GameObjectAdder adder) {
+    protected void leavePosition(Position leavedPosition) {
 		
 	}
 

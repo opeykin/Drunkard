@@ -1,6 +1,6 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
-import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
+import ru.spbau.opeykin.drunkard.game.Position;
 
 
 /**
@@ -11,15 +11,13 @@ import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
  */
 abstract class CreatingGameObject extends AffectableGameObject {
 	
-	protected GameObjectAdder adder;
-	
-	
-	protected CreatingGameObject(GameObjectAdder adder) {
-		super();
-		this.adder = adder;
-	}
+    protected Position creatingPosition;
 
-	@Override
+    protected CreatingGameObject(Position creatingPosition) {
+        this.creatingPosition = creatingPosition;
+    }
+
+    @Override
 	public void destroy() {
 		// do nothing
 	}
