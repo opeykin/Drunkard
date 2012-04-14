@@ -41,6 +41,6 @@ public class LampTest {
 
         drunkard.doTurn();
 
-        verify(policeDepartment).register(drunkard);
+        verify(policeDepartment).onEvent(drunkard);
     }
 }

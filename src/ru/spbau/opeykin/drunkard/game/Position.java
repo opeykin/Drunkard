@@ -63,7 +63,7 @@ public class Position {
         host = visitor;
 
         for (Listener listener : listeners) {
-            listener.register(host);
+            listener.onEvent(host);
         }
     }
 

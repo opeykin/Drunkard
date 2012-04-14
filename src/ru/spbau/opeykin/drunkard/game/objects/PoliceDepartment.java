@@ -49,7 +49,7 @@ public class PoliceDepartment
 	}
 
 	@Override
-	public void register(GameObject object) {
+	public void onEvent(GameObject object) {
 		objectsToAffect.add(object);
 	}
 	

@@ -9,5 +9,5 @@ package ru.spbau.opeykin.drunkard.game.objects;
  *
  */
 public interface Listener {
-	public void register(GameObject object);
+	public void onEvent(GameObject object);
 }
