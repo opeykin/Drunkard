@@ -26,7 +26,7 @@ public class Interaction {
 	
 	public Position move(Position destination) {
         if (destination.isFree()) {
-            destination.denudeContent(source);
+            destination.setOthersHost(source);
             return destination;
         }
 		
@@ -45,7 +45,7 @@ public class Interaction {
 				// do nothing
 				return source;
 			case REPLACE_HOST:
-				destination.denudeContent(source);
+				destination.setOthersHost(source);
 				//source.releaseHost();
 				return destination;
 			default:

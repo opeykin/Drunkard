@@ -41,7 +41,7 @@ public class Position {
     }
 
 
-    void denudeContent(Position position) {
+    void setOthersHost(Position position) {
         releaseHost();
         setHost(position.host);
         position.host = null;
