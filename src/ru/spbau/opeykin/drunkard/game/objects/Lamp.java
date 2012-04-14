@@ -5,7 +5,7 @@ import ru.spbau.opeykin.drunkard.game.Interaction;
 import ru.spbau.opeykin.drunkard.game.Position;
 
 
-public class Lamp extends MovableGameObject {
+public class Lamp extends OnFileldGameObject {
 
 	public Lamp(Position position, Listener policeDepartment, int lightRadius) {
 		super(position);
@@ -13,11 +13,9 @@ public class Lamp extends MovableGameObject {
 		
 		for (int x = -lightRadius; x <= lightRadius; ++x) {
 			for (int y = -lightRadius; y <= lightRadius; ++y) {
-				if (x == 0 && y == 0) {
-					continue;
-				} else {
-					listenerSetter.setListener(x, y, policeDepartment);
-				}
+                if (x != 0 || y != 0) {
+                    listenerSetter.setListener(x, y, policeDepartment);
+                }
 			}
 		}
 	}

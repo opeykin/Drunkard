@@ -53,7 +53,7 @@ public class Position {
     }
 
 
-    public void setHost(GameObject visitor) {
+    void setHost(GameObject visitor) {
         if (!isFree()) {
             throw new IllegalStateException(
                     "trying to set " + visitor.toString() + " to " + this.toString() +

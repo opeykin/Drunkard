@@ -6,14 +6,11 @@ import ru.spbau.opeykin.drunkard.game.GameObjectAdder;
 import ru.spbau.opeykin.drunkard.game.Interaction;
 import ru.spbau.opeykin.drunkard.game.Position;
 
-abstract class MovableGameObject extends AffectableGameObject {
-	
-	private Position position;
-	
-	
-	protected MovableGameObject(Position position) {
-		this.position = position;
-	}
+abstract class MovableGameObject extends OnFileldGameObject {
+
+    protected MovableGameObject(Position position) {
+        super(position);
+    }
 	
 	protected void step(int shiftX, int shiftY) {
         if (position.hasNeighbour(shiftX, shiftY)) {
@@ -29,7 +26,7 @@ abstract class MovableGameObject extends AffectableGameObject {
      * @return true if moved
      */
 	protected boolean step(Position destination) {
-		Interaction move = new Interaction(position);
+		Interaction move = interact();
         Position newPosition = move.move(destination);
         
 		if (!position.equals(newPosition)) { // moved
@@ -43,25 +40,12 @@ abstract class MovableGameObject extends AffectableGameObject {
 
         return false;
 	}
-	
-	protected Interaction interact() {
-		return new Interaction(position);
-	}
-	
-	protected void leavePosition(GameObjectAdder adder) {
+
+    protected void leavePosition(GameObjectAdder adder) {
 		
 	}
-	
-	public void destroy()
-	{
-		position = null;
-	}
 
-	public Position getPosition() {
-		return position;
-	}
-	
-	protected LinkedList<Position> getRoute(Position destination) {
+    protected LinkedList<Position> getRoute(Position destination) {
 		return position.getField().getRoute(position, destination);
 	}
 }
