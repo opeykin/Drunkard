@@ -1,43 +1,27 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
-import org.junit.Before;
 import org.junit.Test;
 import ru.spbau.opeykin.drunkard.game.Position;
-import ru.spbau.opeykin.drunkard.game.RectangularField;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
+
 
 /**
  * User: Alexander Opeykin
  * Date: 3/20/12
  */
 public class LampTest {
-    RectangularField field;
-    Position[][] positions;
-
-    @Before
-    public void prepare() throws Exception {
-        field = new RectangularField(15, 15);
-        positions = field.getAllPositions();
-    }
-
     @Test
-    public void testPoliceDepartmentNotification() throws Exception {
-        // set bottles around to guarantee drunkard falling
-        new Bottle(positions[1][0]);
-        new Bottle(positions[1][2]);
-        new Bottle(positions[0][1]);
-        new Bottle(positions[2][1]);
+    public void testAddingListener() throws Exception {
+        Position mPosition = mock(Position.class);
+        PoliceDepartment mPolice = mock(PoliceDepartment.class);
 
-        Drunkard drunkard = new Drunkard(positions[1][1]);
+        when(mPosition.hasNeighbour(anyInt(), anyInt())).thenReturn(true);
+        when(mPosition.getPosition(anyInt(), anyInt())).thenReturn(mPosition);
 
-        PoliceDepartment policeDepartment = mock(PoliceDepartment.class);
+        Lamp lamp = new Lamp(mPosition, 1);
+        lamp.addListener(mPolice);
 
-        new Lamp(positions[2][2], 2).addListener(policeDepartment);
-
-        drunkard.doTurn();
-
-        verify(policeDepartment).onEvent(drunkard);
+        verify(mPosition, times(8)).addListener(mPolice);
     }
 }

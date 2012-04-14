@@ -80,12 +80,11 @@ public class Drunkard extends MovableGameObject {
 
 	@Override
     InteractionResult getAffected(Drunkard drunkard) {
-		switch (drunkard.state) {
+		switch (drunkard.getState()) {
 			case ACTIVE:
 				// do nothing. just skip this turn.
 				return InteractionResult.KEEP_BOTH;
 			case SLEEP_LYING:
-				//state = State.SLEEP_LYING;
 				return InteractionResult.KEEP_BOTH;
 			case SLEEP_STANDING:
 				state = State.SLEEP_STANDING;
