@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import ru.spbau.opeykin.drunkard.game.Interaction;
 import ru.spbau.opeykin.drunkard.game.Position;
 
-abstract class MovableGameObject extends OnFileldGameObject {
+abstract class MovableGameObject extends OnFieldGameObject {
 
     protected MovableGameObject(Position position) {
         super(position);
@@ -24,7 +24,7 @@ abstract class MovableGameObject extends OnFileldGameObject {
      * @return true if moved
      */
 	protected boolean step(Position destination) {
-		Interaction move = interact();
+		Interaction move = new Interaction(position);
         Position newPosition = move.move(destination);
         
 		if (!position.equals(newPosition)) { // moved

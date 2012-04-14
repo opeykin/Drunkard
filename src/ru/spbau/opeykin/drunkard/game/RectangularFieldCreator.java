@@ -25,7 +25,6 @@ public class RectangularFieldCreator {
 
         Position [][] positions = field.getAllPositions();
 
-
         int pY = policemanCreatingLocationY;
         int pX = policemanCreatingLocationX;
 
@@ -42,7 +41,7 @@ public class RectangularFieldCreator {
         new Pole(polePosition);
 
         Position lampPosition = positions[3][10];
-        new Lamp(lampPosition, policeDepartment, 4);
+        new Lamp(lampPosition, 4).addListener(policeDepartment);
 
         return field;
     }

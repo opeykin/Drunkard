@@ -34,7 +34,7 @@ public class LampTest {
 
         PoliceDepartment policeDepartment = mock(PoliceDepartment.class);
 
-        new Lamp(positions[2][2], policeDepartment, 2);
+        new Lamp(positions[2][2], 2).addListener(policeDepartment);
 
         drunkard.doTurn();
 

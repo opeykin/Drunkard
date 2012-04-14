@@ -86,7 +86,7 @@ public class Position {
     }
 
 
-    void addListener(Listener listener) {
+    public void addListener(Listener listener) {
         listeners.add(listener);
     }
 

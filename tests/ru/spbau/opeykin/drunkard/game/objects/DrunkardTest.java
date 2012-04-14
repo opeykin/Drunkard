@@ -75,10 +75,10 @@ public class DrunkardTest {
         PoliceDepartment policeDepartment = new PoliceDepartment(positions[pY][pX]);
         field.addNonFiledGameObject(policeDepartment);
 
-        new Lamp(positions[1][0], policeDepartment,1);
-        new Lamp(positions[1][2], policeDepartment,1);
-        new Lamp(positions[0][1], policeDepartment,1);
-        new Lamp(positions[2][1], policeDepartment,1);
+        new Lamp(positions[1][0], 1).addListener(policeDepartment);
+        new Lamp(positions[1][2], 1).addListener(policeDepartment);
+        new Lamp(positions[0][1],1).addListener(policeDepartment);
+        new Lamp(positions[2][1],1).addListener(policeDepartment);
 
         Drunkard drunkard = new Drunkard(positions[1][1]);
         drunkard.doTurn();

@@ -4,7 +4,7 @@ import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
 import ru.spbau.opeykin.drunkard.game.Position;
 
 
-public class Pole extends OnFileldGameObject {
+public class Pole extends OnFieldGameObject {
 
 	public Pole(Position position) {
 		super(position);
