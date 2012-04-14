@@ -1,7 +1,5 @@
 package ru.spbau.opeykin.drunkard.game;
 
-import ru.spbau.opeykin.drunkard.game.objects.Listener;
-
 
 public class Interaction {
 
@@ -14,14 +12,6 @@ public class Interaction {
 	public Interaction(Position source) {
 		this.source = source;
 	}	
-	
-	
-	public void setListener(int shiftX, int shiftY, Listener listener) {
-        if (source.hasNeighbour(shiftX, shiftY)) {
-            source.getPosition(shiftX, shiftY).addListener(listener);
-
-        }
-	}
 
 	
 	public Position move(Position destination) {
@@ -46,13 +36,10 @@ public class Interaction {
 				return source;
 			case REPLACE_HOST:
 				destination.setOthersHost(source);
-				//source.releaseHost();
 				return destination;
 			default:
                 throw new UnsupportedOperationException(
                         "Unhandled InteractionResult in Interaction.make(...)");
 		}
 	}
-
-
 }

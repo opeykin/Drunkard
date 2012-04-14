@@ -18,8 +18,7 @@ public abstract class OnFieldGameObject extends AffectableGameObject {
         return position;
     }
 
-    public void destroy()
-    {
+    public void destroy() {
         position = null;
     }
 }
