@@ -36,13 +36,13 @@ public class BFS implements RouteMaker {
         return null;
     }
 
-    private static LinkedList<Position> BSFResults(Position source, Position destitation, HashMap<Position, Position> res) {
-        if (!res.containsKey(destitation)) {
+    private static LinkedList<Position> BSFResults(Position source, Position destination, HashMap<Position, Position> res) {
+        if (!res.containsKey(destination)) {
             return null;
         }
 
         LinkedList<Position> route = new LinkedList<Position>();
-        Position cur = destitation;
+        Position cur = destination;
 
         do {
             route.addFirst(cur);

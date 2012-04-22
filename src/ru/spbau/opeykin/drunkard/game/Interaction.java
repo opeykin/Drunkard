@@ -3,7 +3,7 @@ package ru.spbau.opeykin.drunkard.game;
 
 public class Interaction {
 
-	private Position source;
+	private final Position source;
 
     public static enum InteractionResult {
         RELEASE_VISITOR, DESTROY_HOST, DESTROY_BOTH, KEEP_BOTH, REPLACE_HOST }

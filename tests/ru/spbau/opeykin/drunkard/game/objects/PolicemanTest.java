@@ -12,8 +12,8 @@ import ru.spbau.opeykin.drunkard.game.RectangularField;
  * Date: 3/20/12
  */
 public class PolicemanTest {
-    RectangularField field;
-    Position[][] positions;
+    private RectangularField field;
+    private Position[][] positions;
 
     @Before
     public void prepare() throws Exception {

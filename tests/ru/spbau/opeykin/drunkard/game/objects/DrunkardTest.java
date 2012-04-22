@@ -18,10 +18,10 @@ import java.util.Arrays;
  * Date: 3/19/12
  */
 public class DrunkardTest {
-    RectangularField field;
-    Position[][] positions;
-    Drunkard drunkard;
-    Position position;
+    private RectangularField field;
+    private Position[][] positions;
+    private Drunkard drunkard;
+    private Position position;
 
     @Before
     public void prepare() throws Exception {

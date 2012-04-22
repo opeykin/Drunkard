@@ -7,9 +7,9 @@ import ru.spbau.opeykin.drunkard.game.Position;
  * Date: 4/14/12
  */
 public abstract class OnFieldGameObject extends AffectableGameObject {
-    protected Position position;
+    Position position;
 
-    public OnFieldGameObject(Position position) {
+    OnFieldGameObject(Position position) {
         position.setHost(this);
         this.position = position;
     }

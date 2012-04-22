@@ -11,7 +11,7 @@ import ru.spbau.opeykin.drunkard.game.Position;
  */
 abstract class CreatingGameObject extends OnFieldGameObject {
 	
-    protected Position creatingPosition;
+    final Position creatingPosition;
 
     protected CreatingGameObject(Position position, Position creatingPosition) {
         super(position);

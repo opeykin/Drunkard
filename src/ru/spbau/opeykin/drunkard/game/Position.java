@@ -16,13 +16,13 @@ public class Position {
 
     private GameObject host;
 
-    private List<Listener> listeners = new ArrayList<Listener>();
+    private final List<Listener> listeners = new ArrayList<Listener>();
 
-    private Field field;
+    private final Field field;
 
-    private int x;
+    private final int x;
 
-    private int y;
+    private final int y;
 
 
     Position(Field field, int x, int y) {
@@ -104,6 +104,7 @@ public class Position {
         Position position = (Position) o;
 
         if (x != position.x) return false;
+        //noinspection RedundantIfStatement
         if (y != position.y) return false;
 
         return true;

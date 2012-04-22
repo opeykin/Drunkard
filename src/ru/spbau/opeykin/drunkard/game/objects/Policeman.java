@@ -7,7 +7,7 @@ import ru.spbau.opeykin.drunkard.game.Position;
 
 public class Policeman extends RouteGoingGameObject {
 
-    Position returnPosition;
+    private final Position returnPosition;
 	
 	private boolean complete = false;
 

@@ -6,7 +6,7 @@ import ru.spbau.opeykin.drunkard.game.Position;
 
 abstract class MovableGameObject extends OnFieldGameObject {
 
-    protected MovableGameObject(Position position) {
+    MovableGameObject(Position position) {
         super(position);
     }
 
@@ -17,7 +17,7 @@ abstract class MovableGameObject extends OnFieldGameObject {
      * @param destination position to move on
      * @return true if moved
      */
-	protected boolean step(Position destination) {
+    boolean step(Position destination) {
 		Interaction move = new Interaction(position);
         Position newPosition = move.move(destination);
 
@@ -36,11 +36,11 @@ abstract class MovableGameObject extends OnFieldGameObject {
         return false;
 	}
 
-    protected void leavePosition(Position leavedPosition) {
+    void leavePosition(Position leavedPosition) {
 		
 	}
 
-    protected LinkedList<Position> getRoute(Position destination) {
+    LinkedList<Position> getRoute(Position destination) {
 		return position.getField().getRoute(position, destination);
 	}
 }

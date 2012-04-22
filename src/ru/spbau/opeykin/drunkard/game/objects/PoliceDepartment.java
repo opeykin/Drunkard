@@ -9,9 +9,9 @@ import ru.spbau.opeykin.drunkard.game.objects.Drunkard.State;
 public class PoliceDepartment 
 	extends CreatingGameObject implements Listener {
 	
-	private LinkedList<GameObject> objectsToAffect = new LinkedList<GameObject>();
+	private final LinkedList<GameObject> objectsToAffect = new LinkedList<GameObject>();
 	
-	private LinkedList<Position> targetQueue = new LinkedList<Position>();
+	private final LinkedList<Position> targetQueue = new LinkedList<Position>();
 
     public PoliceDepartment(Position position, Position creatingPosition) {
         super(position, creatingPosition);

@@ -9,7 +9,7 @@ public class BarrelHouse extends CreatingGameObject {
 
 	private int counter = 0;
 	
-	private int drunkardCreatingPeriod;
+	private final int drunkardCreatingPeriod;
 
     public BarrelHouse(Position position, Position creatingPosition, int drunkardCreatingPeriod) {
         super(position, creatingPosition);

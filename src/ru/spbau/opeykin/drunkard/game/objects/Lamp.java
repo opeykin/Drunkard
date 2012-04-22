@@ -6,7 +6,7 @@ import ru.spbau.opeykin.drunkard.game.Position;
 
 
 public class Lamp extends OnFieldGameObject {
-    private int lightRadius;
+    private final int lightRadius;
 
     public Lamp(Position position, int lightRadius) {
         super(position);

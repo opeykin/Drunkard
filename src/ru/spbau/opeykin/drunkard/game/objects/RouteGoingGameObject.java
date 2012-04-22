@@ -10,17 +10,17 @@ import java.util.LinkedList;
  * Date: 4/14/12
  */
 public abstract class RouteGoingGameObject extends MovableGameObject {
-    protected Position target;
-    protected LinkedList<Position> route;
+    final Position target;
+    LinkedList<Position> route;
 
-    public RouteGoingGameObject(Position position, Position target) {
+    RouteGoingGameObject(Position position, Position target) {
         super(position);
         this.target = target;
     }
 
     protected abstract void updateRoute();
 
-    protected void goRoute() {
+    void goRoute() {
         if (route == null || route.isEmpty()) {
             updateRoute();
         }

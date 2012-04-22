@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * Date: 4/14/12
  */
 public class BottleBase extends CreatingGameObject {
-    LinkedList<Beggar> beggars = new LinkedList<Beggar>();
+    private final LinkedList<Beggar> beggars = new LinkedList<Beggar>();
 
     public BottleBase(Position position, Position creatingPosition) {
         super(position, creatingPosition);

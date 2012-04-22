@@ -7,15 +7,15 @@ import ru.spbau.opeykin.drunkard.game.objects.*;
  * Date: 3/17/12
  */
 public class RectangularFieldFiller {
-    private static int fieldWidth = 15;
-    private static int fieldHeight = 15;
-    static final int drunkardCreatingPeriod = 5;
-    static final int policemanCreatingLocationX = 15;
-    static final int policemanCreatingLocationY = 4;
-    static final int lampLightRadius = 3;
+    private static final int fieldWidth = 15;
+    private static final int fieldHeight = 15;
+    private static final int drunkardCreatingPeriod = 5;
+    private static final int policemanCreatingLocationX = 15;
+    private static final int policemanCreatingLocationY = 4;
+    private static final int lampLightRadius = 3;
 
-    static final int drunkardCreatingLocationX = 10;
-    static final int drunkardCreatingLocationY = 1;
+    private static final int drunkardCreatingLocationX = 10;
+    private static final int drunkardCreatingLocationY = 1;
 
 
     public static void fill (RectangularBasedField field) {

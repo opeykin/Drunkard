@@ -13,9 +13,9 @@ public class Drunkard extends MovableGameObject {
 
 	private State state = State.ACTIVE;
 
-	boolean haveBottle = true;
+	private boolean haveBottle = true;
 
-    int drunkardBottleDropProb = 30;
+    private final int drunkardBottleDropProb = 30;
 	
 	
 	public Drunkard(Position position) {

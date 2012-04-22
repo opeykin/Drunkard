@@ -14,13 +14,13 @@ import java.util.List;
  * Date: 4/22/12
  */
 public abstract class RectangularBasedField implements Field {
-    private RouteMaker routeMaker;
-    protected int height;
-    protected int width;
-    protected Position [][] positions;
-    private List<GameObject> nonFiledGameObjects = new ArrayList<GameObject>();
+    private final RouteMaker routeMaker;
+    final int height;
+    final int width;
+    final Position [][] positions;
+    private final List<GameObject> nonFiledGameObjects = new ArrayList<GameObject>();
 
-    public RectangularBasedField(int fieldWidth, int fieldHeight, RouteMaker routeMaker) {
+    RectangularBasedField(int fieldWidth, int fieldHeight, RouteMaker routeMaker) {
         super();
         this.routeMaker = routeMaker;
         this.width = fieldWidth + 2;
