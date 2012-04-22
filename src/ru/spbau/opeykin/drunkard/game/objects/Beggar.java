@@ -22,6 +22,11 @@ public class Beggar extends RouteGoingGameObject {
         super(position, target);
     }
 
+    void setPosition(Position position) {
+        this.position = position;
+        position.setHost(this);
+    }
+
     void setMoney(int money) {
         this.money = money;
     }
@@ -81,11 +86,18 @@ public class Beggar extends RouteGoingGameObject {
 
     @Override
     Interaction.InteractionResult getAffected(BottleBase base) {
-        base.addBeggar(this);
+        if (!hasBottle) {
+            return Interaction.InteractionResult.KEEP_BOTH;
+        }
+
         hasBottle = false;
         money += bottleCost;
-        base.addBeggar(this);
-        return Interaction.InteractionResult.RELEASE_VISITOR;
+        if (money > 0) {
+            base.addBeggar(this);
+            return Interaction.InteractionResult.RELEASE_VISITOR;
+        } else {
+            return Interaction.InteractionResult.KEEP_BOTH;
+        }
     }
 
     @Override

@@ -29,4 +29,19 @@ public class BottleBase extends CreatingGameObject {
     public char getSymbol() {
         return 'Z';
     }
+
+    @Override
+    public void doTurn() {
+        for (Beggar beggar : beggars) {
+            if (beggar.getMoney() > 0) {
+                beggar.decreaseMoney();
+            }
+        }
+
+        while (beggars.size() > 0 &&
+                beggars.peek().getMoney() <= 0 &&
+                creatingPosition.isFree()) {
+            beggars.poll().setPosition(creatingPosition);
+        }
+    }
 }
