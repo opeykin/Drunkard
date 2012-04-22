@@ -20,7 +20,7 @@ public class RectangularFieldTest {
 
     @Before
     public void prepare() throws Exception {
-        field = new RectangularField(fieldHeight, fieldWidth);
+        field = new RectangularField(fieldHeight, fieldWidth, new BFS());
         positions = field.getAllPositions();
     }
 
@@ -70,22 +70,22 @@ public class RectangularFieldTest {
         new Pole(positions[2][2]);
         new Pole(positions[2][1]);
 
-        Assert.assertNull(field.BFS(positions[1][1], positions[3][3]));
+        Assert.assertNull(field.getRoute(positions[1][1], positions[3][3]));
     }
 
     @Test
     public void testBFSDummyPathLength() throws Exception {
         // horizontal
-        Assert.assertEquals(field.BFS(positions[0][0], positions[0][14]).size(), 14);
-        Assert.assertEquals(field.BFS(positions[14][14], positions[14][0]).size(), 14);
+        Assert.assertEquals(14, field.getRoute(positions[1][1], positions[1][15]).size());
+        Assert.assertEquals(14, field.getRoute(positions[15][15], positions[15][1]).size());
 
         // vertical
-        Assert.assertEquals(field.BFS(positions[0][10], positions[14][10]).size(), 14);
-        Assert.assertEquals(field.BFS(positions[14][14], positions[0][14]).size(), 14);
+        Assert.assertEquals(14, field.getRoute(positions[1][11], positions[15][11]).size());
+        Assert.assertEquals(14, field.getRoute(positions[15][15], positions[1][15]).size());
 
         // diagonal
-        Assert.assertEquals(field.BFS(positions[0][0], positions[14][14]).size(), 14);
-        Assert.assertEquals(field.BFS(positions[14][0], positions[0][14]).size(), 14);
+        Assert.assertEquals(28, field.getRoute(positions[1][1], positions[15][15]).size());
+        Assert.assertEquals(28, field.getRoute(positions[15][1], positions[1][15]).size());
     }
 
     @Test
@@ -102,7 +102,7 @@ public class RectangularFieldTest {
         new Pole(positions[4][3]);
         new Pole(positions[5][3]);
 
-        List<Position> BFSPath = field.BFS(positions[1][2], positions[4][2]);
+        List<Position> BFSPath = field.getRoute(positions[1][2], positions[4][2]);
 
         List<Position> truePath = new ArrayList<Position>();
         truePath.add(positions[2][2]);

@@ -1,5 +1,6 @@
 package ru.spbau.opeykin.drunkard.game.objects;
 
+import java.util.List;
 import java.util.Random;
 
 import static ru.spbau.opeykin.drunkard.game.Interaction.InteractionResult;
@@ -43,27 +44,11 @@ public class Drunkard extends MovableGameObject {
 		}
 		
 		Random random = new Random();
-		
-		int value;
-		
-		if (random.nextBoolean()) {
-			value = 1;
-		} else {
-			value = -1;
-		}
-		
-		int x;
-		int y;
-		
-		if (random.nextBoolean()) {
-			x = value;
-			y = 0;
-		} else {
-			x = 0;
-			y = value;
-		}
-		
-		step(x,y);
+        List<Position> neighbors = position.getNeighbours();
+
+        if (neighbors.size() > 0) {
+            step(neighbors.get(random.nextInt(neighbors.size())));
+        }
 	}
 	
 

@@ -3,6 +3,7 @@ package ru.spbau.opeykin.drunkard.game.objects;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import ru.spbau.opeykin.drunkard.game.BFS;
 import ru.spbau.opeykin.drunkard.game.Position;
 import ru.spbau.opeykin.drunkard.game.RectangularField;
 
@@ -16,25 +17,25 @@ public class PolicemanTest {
 
     @Before
     public void prepare() throws Exception {
-        field = new RectangularField(15, 15);
+        field = new RectangularField(15, 15, new BFS());
         positions = field.getAllPositions();
     }
 
     @Test
     public void testDestroyDrunkard() throws Exception {
-        Drunkard drunkard = new Drunkard(positions[2][2]);
+        Drunkard drunkard = new Drunkard(positions[2][1]);
 
         Policeman policeman = new Policeman(positions[1][1], drunkard.getPosition(),positions[1][1]);
 
         Assert.assertNotNull(drunkard.getPosition());
         policeman.doTurn();
-        Assert.assertEquals(policeman.getPosition(), positions[2][2]);
+        Assert.assertEquals(policeman.getPosition(), positions[2][1]);
         Assert.assertNull(drunkard.getPosition());
     }
 
     @Test
     public void testDoNothingIfPathIsBroken() throws Exception {
-        Drunkard drunkard = new Drunkard(positions[3][3]);
+        Drunkard drunkard = new Drunkard(positions[1][3]);
 
         Position policemanPosition = positions[1][1];
         Policeman policeman = new Policeman(policemanPosition, drunkard.getPosition(),policemanPosition);
@@ -58,7 +59,7 @@ public class PolicemanTest {
         Assert.assertNotNull(drunkard.getPosition());
 
         // open path again
-        pole3Position.releaseHost();
+        pole2Position.releaseHost();
 
         // go
         policeman.doTurn();

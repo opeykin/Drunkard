@@ -12,19 +12,7 @@ public class Lamp extends OnFieldGameObject {
         super(position);
         this.lightRadius = lightRadius;
     }
-//
-//    public Lamp(Position position, Listener policeDepartment, int lightRadius) {
-//		super(position);
-//		Interaction listenerSetter = interact();
-//
-//		for (int x = -lightRadius; x <= lightRadius; ++x) {
-//			for (int y = -lightRadius; y <= lightRadius; ++y) {
-//                if (x != 0 || y != 0) {
-//                    listenerSetter.setListener(x, y, policeDepartment);
-//                }
-//			}
-//		}
-//	}
+
 
     public void addListener(Listener listener) {
         for (int x = -lightRadius; x <= lightRadius; ++x) {

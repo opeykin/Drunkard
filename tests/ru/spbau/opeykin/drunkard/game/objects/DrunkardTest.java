@@ -6,9 +6,12 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
+import ru.spbau.opeykin.drunkard.game.BFS;
 import ru.spbau.opeykin.drunkard.game.Interaction;
 import ru.spbau.opeykin.drunkard.game.Position;
 import ru.spbau.opeykin.drunkard.game.RectangularField;
+
+import java.util.Arrays;
 
 /**
  * User: Alexander Opeykin
@@ -22,7 +25,7 @@ public class DrunkardTest {
 
     @Before
     public void prepare() throws Exception {
-        field = new RectangularField(15, 15);
+        field = new RectangularField(15, 15, new BFS());
         positions = field.getAllPositions();
         position = positions[1][1];
         drunkard = new Drunkard(position);
@@ -51,8 +54,7 @@ public class DrunkardTest {
         Position mPosition1 = mock(Position.class);
         Position mPosition2 = mock(Position.class);
 
-        when(mPosition1.hasNeighbour(anyInt(), anyInt())).thenReturn(true);
-        when(mPosition1.getPosition(anyInt(), anyInt())).thenReturn(mPosition2);
+        when(mPosition1.getNeighbours()).thenReturn(Arrays.asList(mPosition2));
 
         when(mPosition2.isFree()).thenReturn(true);
 

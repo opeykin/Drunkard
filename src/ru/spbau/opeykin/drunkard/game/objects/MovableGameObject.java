@@ -9,14 +9,6 @@ abstract class MovableGameObject extends OnFieldGameObject {
     protected MovableGameObject(Position position) {
         super(position);
     }
-	
-	protected boolean step(int shiftX, int shiftY) {
-        if (!position.hasNeighbour(shiftX, shiftY)) {
-            return false;
-        }
-
-        return step(position.getPosition(shiftX, shiftY));
-	}
 
 
     /**

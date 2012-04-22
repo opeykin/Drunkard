@@ -18,4 +18,6 @@ public interface Field {
     List<GameObject> getObjects();
 
     LinkedList<Position> getRoute(Position source, Position destination);
+
+    List<Position> getNeighbours(Position position);
 }

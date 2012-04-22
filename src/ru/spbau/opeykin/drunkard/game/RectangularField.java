@@ -12,11 +12,14 @@ public class RectangularField implements Field {
 	
 	private Position [][] field;
 
+    private RouteMaker routeMaker;
+
     private List<GameObject> nonFiledGameObjects = new ArrayList<GameObject>();
 
 
-	public RectangularField(int fieldHeight, int fieldWidth) {
+	public RectangularField(int fieldHeight, int fieldWidth, RouteMaker routeMaker) {
 		super();
+        this.routeMaker = routeMaker;
 		this.height = fieldHeight + 2;
 		this.width = fieldWidth + 2;
 		field = new Position [height][width];
@@ -37,6 +40,40 @@ public class RectangularField implements Field {
         }
 
 	}
+
+
+    @Override
+    public LinkedList<Position> getRoute(Position source, Position destination) {
+        return routeMaker.getRoute(source, destination);
+    }
+
+
+    @Override
+    public List<Position> getNeighbours(Position position) {
+        List<Position> neighbours = new ArrayList<Position>();
+
+        int [] shiftX = {1, -1, 0, 0};
+        int [] shiftY = {0, 0, 1, -1};
+
+        for (int i = 0; i < 4; ++i) {
+            if (hasPosition(position, shiftX[i], shiftY[i])) {
+                neighbours.add(getPosition(position, shiftX[i], shiftY[i]));
+            }
+        }
+
+//        for (int shiftY = -1; shiftY < 2; ++shiftY) {
+//            for (int shiftX = -1; shiftX < 2; ++shiftX) {
+//                if (shiftX == 0 && shiftY == 0) {
+//                    continue;
+//                }
+//
+//                if (hasPosition(position, shiftX, shiftY)) {
+//                    neighbours.add(getPosition(position, shiftX, shiftX));
+//                }
+//            }
+//        }
+        return neighbours;
+    }
 
     public void addNonFiledGameObject(GameObject gameObject) {
         nonFiledGameObjects.add(gameObject);
@@ -91,63 +128,5 @@ public class RectangularField implements Field {
 			}
 		}
 		return Collections.unmodifiableList(objectList);
-	}
-	
-	private LinkedList<Position> BSFResults(Position source, Position destitation, HashMap<Position, Position> res) {
-		if (!res.containsKey(destitation)) {
-			return null;
-		}
-		
-		LinkedList<Position> route = new LinkedList<Position>();
-		Position cur = destitation;
-		
-		do {
-			route.addFirst(cur);
-			cur = res.get(cur);
-		} while (cur != source);
-		
-		return route;
-	}
-	
-	public LinkedList<Position> BFS(Position source, Position destination) {
-		LinkedList<Position> queue = new LinkedList<Position>();
-		HashMap<Position, Position> res = new HashMap<Position, Position>();
-		queue.add(source);
-		res.put(source, source);
-		
-		while (!queue.isEmpty()) {
-			Position cur = queue.pollFirst();
-			if (cur == destination) {
-				return BSFResults(source, destination, res);
-			}
-			for (int shiftY = -1; shiftY < 2; ++shiftY) {
-				for (int shiftX = -1; shiftX < 2; ++shiftX) {
-					if (shiftX == 0 && shiftY == 0) {
-						continue;
-					}
-
-                    if (!cur.hasNeighbour(shiftX, shiftY)) {
-                        continue;
-                    }
-
-					Position next = cur.getPosition(shiftX, shiftY);
-
-					if (!next.isFree() && next != destination) {
-						continue;
-					}
-
-					if (!res.containsKey(next)) {
-						res.put(next, cur);
-						queue.add(next);
-					}
-				}
-			}
-		}
-		return null;
-	}
-	
-	public LinkedList<Position> getRoute(Position source, Position destination)
-	{
-		return BFS(source, destination);
 	}
 }

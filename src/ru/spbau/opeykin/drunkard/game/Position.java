@@ -81,6 +81,11 @@ public class Position {
     }
 
 
+    public List<Position> getNeighbours() {
+        return field.getNeighbours(this);
+    }
+
+
     public boolean isFree() {
         return host == null;
     }

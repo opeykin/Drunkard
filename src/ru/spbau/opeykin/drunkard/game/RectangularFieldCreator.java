@@ -18,7 +18,7 @@ public class RectangularFieldCreator {
 
 
     public static RectangularField create () {
-        RectangularField field = new RectangularField(fieldHeight, fieldWidth);
+        RectangularField field = new RectangularField(fieldHeight, fieldWidth, new BFS());
 
         Position [][] positions = field.getAllPositions();
 
