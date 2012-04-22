@@ -1,6 +1,5 @@
 package ru.spbau.opeykin.drunkard;
 
-
 import ru.spbau.opeykin.drunkard.game.*;
 import ru.spbau.opeykin.drunkard.game.objects.GameObject;
 
@@ -20,7 +19,9 @@ public class Main {
 
 		for (Integer i = 0; i < 501; ++i) {
 			for (GameObject gameObject : field.getObjects()) {
-				gameObject.doTurn();
+                if (gameObject.getPosition() != null) {
+				    gameObject.doTurn();
+                }
 			}
 			System.out.println(i.toString());
 			field.draw();

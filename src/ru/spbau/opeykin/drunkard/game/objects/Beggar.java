@@ -3,8 +3,6 @@ package ru.spbau.opeykin.drunkard.game.objects;
 import ru.spbau.opeykin.drunkard.game.Interaction;
 import ru.spbau.opeykin.drunkard.game.Position;
 
-import java.util.List;
-import java.util.Random;
 
 /**
  * User: Alexander Opeykin
@@ -12,10 +10,10 @@ import java.util.Random;
  */
 public class Beggar extends RouteGoingGameObject {
 
-//    private int xDirection = 1;
-//    private int yDirection = 1;
-//    private boolean lastTurnHorizontal;
-//    private boolean lastTurnResult = true;
+    private int xDirection = 1;
+    private int yDirection = -1;
+    private boolean lastTurnHorizontal;
+    private boolean lastTurnResult = true;
     private boolean hasBottle = false;
     private final int bottleCost = 40;
     private int money = 0;
@@ -50,6 +48,9 @@ public class Beggar extends RouteGoingGameObject {
         route = getRoute(target);
     }
 
+    /**
+     * go through the entire field from left to right
+     */
     @Override
     public void doTurn() {
         if (hasBottle) {
@@ -57,27 +58,20 @@ public class Beggar extends RouteGoingGameObject {
             return;
         }
 
-        Random random = new Random();
-        List<Position> neighbors = position.getNeighbours();
-
-        if (neighbors.size() > 0) {
-            step(neighbors.get(random.nextInt(neighbors.size())));
+        if (lastTurnResult) {
+            lastTurnResult = step(xDirection, 0);
+            lastTurnHorizontal = true;
+        } else {
+            if (lastTurnHorizontal) {
+                xDirection = -xDirection;
+                lastTurnResult = step(0, yDirection);
+                lastTurnHorizontal = false;
+            } else {
+                yDirection = -yDirection;
+                lastTurnResult = step(xDirection, 0);
+                lastTurnHorizontal = true;
+            }
         }
-        // walking algorithm
-//        if (lastTurnResult) {
-//            lastTurnResult = step(xDirection, 0);
-//            lastTurnHorizontal = true;
-//        } else {
-//            if (lastTurnHorizontal) {
-//                xDirection = -xDirection;
-//                lastTurnResult = step(0, yDirection);
-//                lastTurnHorizontal = false;
-//            } else {
-//                yDirection = -yDirection;
-//                lastTurnResult = step(xDirection, 0);
-//                lastTurnHorizontal = true;
-//            }
-//        }
     }
 
     @Override
