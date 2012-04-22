@@ -45,7 +45,7 @@ public class Policeman extends RouteGoingGameObject {
 
 	@Override
     InteractionResult getAffected(Drunkard drunkard) {
-		if (drunkard.getPosition() == target) {
+		if (!complete && drunkard.getPosition() == target) {
 			complete = true;
 			return InteractionResult.REPLACE_HOST;
 		}

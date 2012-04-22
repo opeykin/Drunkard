@@ -6,19 +6,22 @@ import ru.spbau.opeykin.drunkard.game.objects.*;
  * User: Alexander Opeykin
  * Date: 3/17/12
  */
-public class RectangularFieldCreator {
+public class RectangularFieldFiller {
     private static int fieldWidth = 15;
     private static int fieldHeight = 15;
     static final int drunkardCreatingPeriod = 5;
     static final int policemanCreatingLocationX = 15;
     static final int policemanCreatingLocationY = 4;
+    static final int lampLightRadius = 3;
 
     static final int drunkardCreatingLocationX = 10;
     static final int drunkardCreatingLocationY = 1;
 
 
-    public static RectangularField create () {
-        RectangularField field = new RectangularField(fieldHeight, fieldWidth, new BFS());
+    public static void fill (RectangularBasedField field) {
+        if (field.height - 2 != fieldHeight || field.width - 2 != fieldWidth) {
+            throw new IllegalArgumentException("wrong field size");
+        }
 
         Position [][] positions = field.getAllPositions();
 
@@ -42,7 +45,7 @@ public class RectangularFieldCreator {
         new Pole(polePosition);
 
         Position lampPosition = positions[4][11];
-        new Lamp(lampPosition, 5).addListener(policeDepartment);
+        new Lamp(lampPosition, lampLightRadius).addListener(policeDepartment);
 
         positions[16][4].releaseHost(); // destroy wall
         BottleBase base = new BottleBase(positions[16][4], positions[15][5]);
@@ -51,11 +54,5 @@ public class RectangularFieldCreator {
         new Beggar(positions[15][5], positions[16][4]);
 
         new Bottle(positions[13][1]);
-
-        return field;
     }
-//
-//    public static RectangularField createTest () {
-//
-//    }
 }
