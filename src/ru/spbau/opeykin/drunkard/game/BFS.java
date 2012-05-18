@@ -1,6 +1,5 @@
 package ru.spbau.opeykin.drunkard.game;
 
-import ru.spbau.opeykin.drunkard.game.objects.RouteMaker;
 import java.util.HashMap;
 import java.util.LinkedList;
 

@@ -22,18 +22,6 @@ public class PolicemanTest {
     }
 
     @Test
-    public void testDestroyDrunkard() throws Exception {
-        Drunkard drunkard = new Drunkard(positions[2][1]);
-
-        Policeman policeman = new Policeman(positions[1][1], drunkard.getPosition(),positions[1][1]);
-
-        Assert.assertNotNull(drunkard.getPosition());
-        policeman.doTurn();
-        Assert.assertEquals(policeman.getPosition(), positions[2][1]);
-        Assert.assertNull(drunkard.getPosition());
-    }
-
-    @Test
     public void testDoNothingIfPathIsBroken() throws Exception {
         Drunkard drunkard = new Drunkard(positions[1][3]);
 
@@ -64,8 +52,5 @@ public class PolicemanTest {
         // go
         policeman.doTurn();
         policeman.doTurn();
-
-        // drunkard destroyed
-        Assert.assertNull(drunkard.getPosition());
     }
 }

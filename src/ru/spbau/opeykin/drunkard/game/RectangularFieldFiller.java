@@ -31,15 +31,12 @@ public class RectangularFieldFiller {
         positions[4][16].releaseHost(); // destroy wall
         PoliceDepartment policeDepartment = new PoliceDepartment(
                 positions[4][16], positions[pY][pX]);
-        field.addNonFiledGameObject(policeDepartment);
 
         int dY = drunkardCreatingLocationY;
         int dX = drunkardCreatingLocationX;
 
         positions[0][10].releaseHost(); // destroy wall
-        BarrelHouse barrelHouse = new BarrelHouse(
-                positions[0][10], positions[dY][dX], drunkardCreatingPeriod);
-        field.addNonFiledGameObject(barrelHouse);
+        new BarrelHouse(positions[0][10], positions[dY][dX], drunkardCreatingPeriod);
 
         Position polePosition = positions[8][8];
         new Pole(polePosition);
@@ -48,8 +45,7 @@ public class RectangularFieldFiller {
         new Lamp(lampPosition, lampLightRadius).addListener(policeDepartment);
 
         positions[16][4].releaseHost(); // destroy wall
-        BottleBase base = new BottleBase(positions[16][4], positions[15][5]);
-        field.addNonFiledGameObject(base);
+        new BottleBase(positions[16][4], positions[15][5]);
 
         new Beggar(positions[15][5], positions[16][4]);
 

@@ -1,7 +1,5 @@
 package ru.spbau.opeykin.drunkard.game;
 
-import ru.spbau.opeykin.drunkard.game.objects.RouteMaker;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

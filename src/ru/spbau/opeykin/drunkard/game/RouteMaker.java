@@ -1,6 +1,5 @@
-package ru.spbau.opeykin.drunkard.game.objects;
+package ru.spbau.opeykin.drunkard.game;
 
-import ru.spbau.opeykin.drunkard.game.Position;
 import java.util.LinkedList;
 
 /**

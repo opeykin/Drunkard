@@ -1,13 +1,10 @@
 package ru.spbau.opeykin.drunkard.game;
 
 import ru.spbau.opeykin.drunkard.game.objects.GameObject;
-import ru.spbau.opeykin.drunkard.game.objects.RouteMaker;
 import ru.spbau.opeykin.drunkard.game.objects.Wall;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * User: Alexander Opeykin
@@ -18,7 +15,6 @@ public abstract class RectangularBasedField implements Field {
     final int height;
     final int width;
     final Position [][] positions;
-    private final List<GameObject> nonFiledGameObjects = new ArrayList<GameObject>();
 
     RectangularBasedField(int fieldWidth, int fieldHeight, RouteMaker routeMaker) {
         super();
@@ -49,10 +45,6 @@ public abstract class RectangularBasedField implements Field {
         return routeMaker.getRoute(source, destination);
     }
 
-    public void addNonFiledGameObject(GameObject gameObject) {
-        nonFiledGameObjects.add(gameObject);
-    }
-
     @Override
     public boolean hasPosition(Position source, int shiftX, int shiftY) {
         int x = source.getX() + shiftX;
@@ -77,16 +69,7 @@ public abstract class RectangularBasedField implements Field {
     }
 
     @Override
-	public List<GameObject> getObjects() {
-		LinkedList<GameObject> objectList =	new LinkedList<GameObject>(nonFiledGameObjects);
-
-		for (int i = 1; i < height - 1; ++i) {
-			for (int j = 1; j < width - 1; ++j) {
-				if (!positions[i][j].isFree()) {
-					objectList.add(positions[i][j].getHost());
-				}
-			}
-		}
-		return Collections.unmodifiableList(objectList);
-	}
+    public Iterator<GameObject> iterator() {
+        return new GameObjectIterator(positions);
+    }
 }

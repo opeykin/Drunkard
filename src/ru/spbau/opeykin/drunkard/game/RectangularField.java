@@ -1,7 +1,5 @@
 package ru.spbau.opeykin.drunkard.game;
 
-import ru.spbau.opeykin.drunkard.game.objects.RouteMaker;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +10,6 @@ public class RectangularField extends RectangularBasedField {
 		super(fieldWidth, fieldHeight, routeMaker);
 
 	}
-
 
     @Override
     public List<Position> getNeighbours(Position position) {

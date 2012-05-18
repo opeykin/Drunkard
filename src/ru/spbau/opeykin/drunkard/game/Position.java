@@ -69,10 +69,7 @@ public class Position {
 
 
     public void releaseHost() {
-        if (host != null) {
-            host.destroy();
-            host = null;
-        }
+        host = null;
     }
 
 

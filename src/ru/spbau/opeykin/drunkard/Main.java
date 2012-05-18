@@ -18,11 +18,10 @@ public class Main {
         RectangularFieldFiller.fill(field);
 
 		for (Integer i = 0; i < 501; ++i) {
-			for (GameObject gameObject : field.getObjects()) {
-                if (gameObject.getPosition() != null) {
-				    gameObject.doTurn();
-                }
-			}
+            for (GameObject gameObject : field) {
+                gameObject.doTurn();
+            }
+
 			System.out.println(i.toString());
 			field.draw();
 		}

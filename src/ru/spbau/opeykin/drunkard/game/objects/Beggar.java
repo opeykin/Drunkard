@@ -27,10 +27,6 @@ public class Beggar extends RouteGoingGameObject {
         position.setHost(this);
     }
 
-    void setMoney(int money) {
-        this.money = money;
-    }
-
     public int getMoney() {
         return money;
     }

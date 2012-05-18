@@ -21,10 +21,6 @@ abstract class MovableGameObject extends OnFieldGameObject {
 		Interaction move = new Interaction(position);
         Position newPosition = move.move(destination);
 
-        if (position == null) { //this object was destroyed
-            return true;
-        }
-        
 		if (!position.equals(newPosition)) { // moved
 			if (position.isFree()) {
 				leavePosition(position);
@@ -36,7 +32,7 @@ abstract class MovableGameObject extends OnFieldGameObject {
         return false;
 	}
 
-    protected boolean step(int shiftX, int shiftY) {
+    boolean step(int shiftX, int shiftY) {
         //noinspection SimplifiableIfStatement
         if (!position.hasNeighbour(shiftX, shiftY)) {
             return false;
@@ -46,7 +42,7 @@ abstract class MovableGameObject extends OnFieldGameObject {
     }
 
     void leavePosition(Position leavedPosition) {
-		
+
 	}
 
     LinkedList<Position> getRoute(Position destination) {

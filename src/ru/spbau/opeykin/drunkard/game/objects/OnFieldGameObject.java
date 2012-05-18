@@ -14,12 +14,7 @@ public abstract class OnFieldGameObject extends AffectableGameObject {
         this.position = position;
     }
 
-    @Override
     public Position getPosition() {
         return position;
-    }
-
-    public void destroy() {
-        position = null;
     }
 }
