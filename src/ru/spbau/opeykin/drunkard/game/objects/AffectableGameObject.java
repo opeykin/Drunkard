@@ -56,8 +56,13 @@ public abstract class AffectableGameObject implements GameObject {
     InteractionResult getAffected(Wall wall) {
         return InteractionResult.KEEP_BOTH;
     }
-	
+
 	InteractionResult getAffected(BarrelHouse barrelHouse) {
+        return InteractionResult.KEEP_BOTH;
+    }
+
+    //stub
+    InteractionResult getAffected(AffectableGameObject affectableGameObject) {
         return InteractionResult.KEEP_BOTH;
     }
 }
