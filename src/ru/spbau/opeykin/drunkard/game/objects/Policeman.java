@@ -35,6 +35,9 @@ public class Policeman extends RouteGoingGameObject {
 
 	@Override
 	public void doTurn() {
+        if (!complete && target.equals(position)) {
+            complete = true;
+        }
         goRoute();
 	}
 
