@@ -61,8 +61,8 @@ public abstract class AffectableGameObject implements GameObject {
         return InteractionResult.KEEP_BOTH;
     }
 
-    //stub
-    InteractionResult getAffected(AffectableGameObject affectableGameObject) {
-        return InteractionResult.KEEP_BOTH;
-    }
+//    //stub
+//    InteractionResult getAffected(AffectableGameObject affectableGameObject) {
+//        return InteractionResult.KEEP_BOTH;
+//    }
 }

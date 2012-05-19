@@ -47,7 +47,7 @@ public class RectangularFieldFiller {
         positions[16][4].releaseHost(); // destroy wall
         new BottleBase(positions[16][4], positions[15][5]);
 
-        new Beggar(positions[15][5], positions[16][4]);
+        new Beggar(positions[15][5], positions[16][4], 40);
 
         new Bottle(positions[13][1]);
     }

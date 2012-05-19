@@ -25,12 +25,12 @@ public abstract class RouteGoingGameObject extends MovableGameObject {
             updateRoute();
         }
 
-        if (route == null) {
+        if (route == null || route.isEmpty()) {
             // no route exists for the moment
             return;
         }
 
-        boolean isMoved = step(route.getFirst());
+        boolean isMoved = step(route.pollFirst());
         if (!isMoved) {
             updateRoute();
         }

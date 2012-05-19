@@ -15,11 +15,13 @@ public class Beggar extends RouteGoingGameObject {
     private boolean lastTurnHorizontal;
     private boolean lastTurnResult = true;
     private boolean hasBottle = false;
-    private final int bottleCost = 40;
+    private final int bottleCost;
     private int money = 0;
 
-    public Beggar(Position position, Position target) {
+
+    public Beggar(Position position, Position target, int bottleCost) {
         super(position, target);
+        this.bottleCost = bottleCost;
     }
 
     void setPosition(Position position) {
