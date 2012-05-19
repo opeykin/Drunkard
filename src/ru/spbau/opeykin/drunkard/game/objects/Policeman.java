@@ -38,11 +38,6 @@ public class Policeman extends RouteGoingGameObject {
         goRoute();
 	}
 
-    @Override
-    protected void leavePosition(Position leavedPosition) {
-        route.pollFirst();
-    }
-
 	@Override
     InteractionResult getAffected(Drunkard drunkard) {
 		if (!complete && drunkard.getPosition() == target) {
