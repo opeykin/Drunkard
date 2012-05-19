@@ -9,7 +9,7 @@ import ru.spbau.opeykin.drunkard.game.objects.*;
 public class RectangularFieldFiller {
     private static final int fieldWidth = 15;
     private static final int fieldHeight = 15;
-    private static final int drunkardCreatingPeriod = 5;
+    private static final int drunkardCreatingPeriod = 20;
     private static final int policemanCreatingLocationX = 15;
     private static final int policemanCreatingLocationY = 4;
     private static final int lampLightRadius = 3;
